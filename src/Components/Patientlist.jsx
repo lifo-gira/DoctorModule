@@ -119,7 +119,7 @@ const Patientlist = ({ onReportClick, patientdata,data,data1,event, handlePhoneI
         )),
         phone: "NA",
         time: startDate.toLocaleString('en-US'),
-        doctor: searchres.doctor_id,
+        patient_id: searchres.patient_id,
       };
     
       settemdetails(appointmentdetails);
@@ -132,7 +132,7 @@ const Patientlist = ({ onReportClick, patientdata,data,data1,event, handlePhoneI
       appointmentdetails.injury=searchres.injury;
       appointmentdetails.phone = "NA";
       appointmentdetails.time= "NA";
-      appointmentdetails.doctor_id= searchres.doctor_id;
+      appointmentdetails.patient_id= searchres.patient_id;
       settemdetails(appointmentdetails);
       console.log("Selected patient",appointmentdetails);
     }
@@ -177,7 +177,7 @@ const Patientlist = ({ onReportClick, patientdata,data,data1,event, handlePhoneI
             )),
             phone: "NA",
             time: startDate.toLocaleString('en-US'),
-            doctor: patientdata[0].doctor_id,
+            patient_id: patientdata[0].patient_id,
           };
       
           settemdetails(appointmentdetails);
@@ -203,7 +203,7 @@ const Patientlist = ({ onReportClick, patientdata,data,data1,event, handlePhoneI
           ));;
           appointmentdetails.time = event.health_tracker.schedule_start_date.toString();
           appointmentdetails.phone= "NA"
-          appointmentdetails.doctor_id = searchData.doctor_id
+          appointmentdetails.patient_id = searchData.patient_id
           settemdetails(appointmentdetails);
           console.log("Appointment", tempdetails);
         } else {
@@ -638,7 +638,8 @@ const Patientlist = ({ onReportClick, patientdata,data,data1,event, handlePhoneI
                     className={`w-1/6 h-full flex flex-row items-center justify-between`}
                   >
                     <ChatBubbleBottomCenterTextIcon className="w-7 h-7" />
-                    <PhoneIcon className="w-7 h-7" onClick={handlePhoneIconClick}/>
+                    <PhoneIcon className="w-7 h-7" onClick={() => handlePhoneIconClick(tempdetails.patient_id)}/>
+                    {console.log(tempdetails.patient_id)}
                   </div>
                 </div>
                 <div className={`h-1/2 w-full   flex flex-row`}>
@@ -710,7 +711,8 @@ const Patientlist = ({ onReportClick, patientdata,data,data1,event, handlePhoneI
                     className={`w-full h-full flex flex-row items-center justify-center gap-8`}
                   >
                     <ChatBubbleBottomCenterTextIcon className="w-7 h-7" />
-                    <PhoneIcon className="w-7 h-7" onClick={handlePhoneIconClick}/>
+                    <PhoneIcon className="w-7 h-7"  onClick={() => handlePhoneIconClick(tempdetails.patient_id)}/>
+                    {console.log(tempdetails.patient_id)}
                   </div>
                   <div className={`w-full h-full flex justify-center`}>
                     <Typography

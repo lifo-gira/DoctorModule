@@ -7,6 +7,7 @@ import { BrowserRouter as Route, Router, Switch } from "react-router-dom";
 function App() {
   const [activeMenuItem, setActiveMenuItem] = useState("Profilebar");
   const [userID, setuserID] = useState(null);
+  const [doctorId, setdoctorId] = useState(null);
   const handleMenuItemClick = (menuItem, userId) => {
     setuserID(userId);
     setActiveMenuItem(menuItem);
@@ -14,10 +15,12 @@ function App() {
   };
 
   useEffect(() => {
-    console.log(userID); // Log the updated userID after it's been set
-  }, [userID]);
+    console.log(doctorId); // Log the updated userID after it's been set
+  }, [userID,doctorId]);
 
-  const handleCallClick = ()=>{
+  const handleCallClick = (value)=>{
+    console.log("ID",value)
+    setdoctorId(value)
     setActiveMenuItem("VideoCall")
   }
   const [patflag,setpatflag] = useState('false');
@@ -33,7 +36,7 @@ console.log("start  ",patflag)
       {activeMenuItem === "Profilebar" && <Profilebar onRegimeClick={(userId)=> handleMenuItemClick("Regimebuilder",userId)} handleVideoClick={handleCallClick} patlis={patflag}/>}
       {activeMenuItem === "Regimebuilder" && <Regimebuilder userId={userID} onProfileClick={()=>handleMenuItemClick("Profilebar")}/>}
       {activeMenuItem === "VideoCall" && (
-        <VideoCall onVideocallClick={()=>handleMenuItemClick("VideoCall")} onMeetEnd={onPatList}/>
+        <VideoCall doctorId={doctorId} onVideocallClick={()=>handleMenuItemClick("VideoCall")} onMeetEnd={onPatList}/>
       )}
     </div>
     </>
