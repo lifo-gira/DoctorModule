@@ -80,85 +80,7 @@ const Regimebuilder = ({ onProfileClick, userId }) => {
     };
   }, []);
 
-  const patientdata = [
-    {
-      name: "John Doe",
-      age: 25,
-      gender: "Male",
-      id: "ABC123",
-      waitingOrPending: false,
-      injury: "Left Knee Pain",
-    },
-    {
-      name: "Jane Doe",
-      age: 30,
-      gender: "Female",
-      id: "XYZ456",
-      waitingOrPending: false,
-      injury: "Right Knee Pain",
-    },
-    {
-      name: "Bob Smith",
-      age: 40,
-      gender: "Male",
-      id: "DEF789",
-      waitingOrPending: true,
-      injury: "Back Injury",
-    },
-    {
-      name: "Alice Johnson",
-      age: 28,
-      gender: "Female",
-      id: "GHI321",
-      waitingOrPending: false,
-      injury: "Elbow Pain",
-    },
-    {
-      name: "Chris Williams",
-      age: 35,
-      gender: "Male",
-      id: "JKL987",
-      waitingOrPending: true,
-      injury: "Shoulder Injury",
-    },
-    {
-      name: "Alice Johnson",
-      age: 28,
-      gender: "Female",
-      id: "GHI321",
-      waitingOrPending: false,
-      injury: "Elbow Pain",
-    },
-    {
-      name: "Chris Williams",
-      age: 35,
-      gender: "Male",
-      id: "JKL987",
-      waitingOrPending: true,
-      injury: "Shoulder Injury",
-    },
-    {
-      name: "Alice Johnson",
-      age: 28,
-      gender: "Female",
-      id: "GHI321",
-      waitingOrPending: false,
-      injury: "Elbow Pain",
-    },
-    {
-      name: "Chris Williams",
-      age: 35,
-      gender: "Male",
-      id: "JKL987",
-      waitingOrPending: true,
-      injury: "Shoulder Injury",
-    },
-  ];
   const [exerciseDetails, setExerciseDetails] = useState([]); // Initialize state for exercise details as an empty array
-  const [runDetails, setRunDetails] = useState([]);
-  const [squatsDetails, setSquatsDetails] = useState([]);
-  const [pushupDetails, setPushupDetails] = useState([]);
-  const [pullupDetails, setPullupDetails] = useState([]);
   const handleTimeChange = (event, index) => {
     const newValue = parseInt(event.target.value);
     setExerciseDetails((prevDetails) => {
@@ -298,37 +220,40 @@ const Regimebuilder = ({ onProfileClick, userId }) => {
     });
   }, [selectedExercises]);
 
-  useEffect(() => {
-    exerciseDetails.forEach(({ exerciseName, rep, set }) => {
-      switch (exerciseName) {
-        case "run":
-          setRunDetails({ rep, set });
-          break;
-        case "squat":
-          setSquatsDetails({ rep, set });
-          break;
-        case "pushup":
-          setPushupDetails({ rep, set });
-          break;
-        case "pullup":
-          setPullupDetails({ rep, set });
-          break;
-        default:
-          break;
-      }
-    });
-  }, [exerciseDetails]);
+  // useEffect(() => {
+  //   exerciseDetails.forEach(({ exerciseName, rep, set }) => {
+  //     switch (exerciseName) {
+  //       case "run":
+  //         setRunDetails({ rep, set });
+  //         break;
+  //       case "squat":
+  //         setSquatsDetails({ rep, set });
+  //         break;
+  //       case "pushup":
+  //         setPushupDetails({ rep, set });
+  //         break;
+  //       case "pullup":
+  //         setPullupDetails({ rep, set });
+  //         break;
+  //       default:
+  //         break;
+  //     }
+  //   });
+  // }, [exerciseDetails]);
 
   const updateExercisesGiven = async (patientId, newFlag) => {
     console.log(patientId, "patienId");
     try {
+      console.log(exerciseDetails)
+
+      const updatedExercises = exerciseDetails.map(exercise => ({
+        name: exercise.exerciseName,
+        set: exercise.set,
+        rep: exercise.rep
+      }));
       // Update exerciseGivenData based on the latest details stored in state variables
       const exercise_data = {
-        running: runDetails,
-        pushups: pushupDetails,
-        squats: squatsDetails,
-        pullups: pullupDetails,
-        // Add other exercises as needed
+        data: updatedExercises
       };
 
       // Send the updated exerciseGivenData to the backend

@@ -46,6 +46,7 @@ import {
 } from "recharts";
 import { useNavigate } from "react-router-dom";
 
+
 const Patientlist = ({ onReportClick, patientdata,data,data1,event, handlePhoneIconClick}) => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [screenheight, setScreenHeight] = useState(window.innerHeight);
@@ -229,11 +230,7 @@ const Patientlist = ({ onReportClick, patientdata,data,data1,event, handlePhoneI
     return patientdata.find(patient => patient.patient_id === patientId);
   }; 
 
-  // const navigate = useNavigate();
-
-  // const handlePhoneIconClick = () => {
-  //   navigate('/videocall');
-  // };
+  
 
   return (
     <div

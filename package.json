@@ -19,7 +19,8 @@
     "react-toastify": "^10.0.4",
     "recharts": "^2.11.0",
     "tailwind-scrollbar": "^3.0.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "zego-zim-web": "^2.14.0"
   },
   "scripts": {
     "start": "react-scripts start",

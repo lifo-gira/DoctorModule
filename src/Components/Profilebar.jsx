@@ -423,6 +423,11 @@ const Profilebar = ({onRegimeClick, handleVideoClick,patlis}) => {
     setShowDropdown((prevState) => !prevState);
   };
 
+  useEffect(() => {
+    // Trigger handleVideoClick function when the component mounts
+    handleVideoClick(); // This will trigger handleCallClick in the parent component
+  }, []);
+
   return (
     <div
       className={`w-full flex flex-row ${
@@ -792,7 +797,7 @@ const Profilebar = ({onRegimeClick, handleVideoClick,patlis}) => {
           </div>
 }
         <div className={`w-full ${screenWidth<1200 || activeMenuItem === "Report"?"h-full":"h-5/6 mt-auto"}`}>
-          {(activeMenuItem === "Dashboard" && patlis === 'false') && <Dashboard patientdata={patients} doctordata={doctordata} onEventSelect={handleEventSelect} onReportClick={(userId) => handleMenuItemClick("Report", userId)} />}
+          {(activeMenuItem === "Dashboard" && patlis === 'false') && <Dashboard patientdata={patients} doctordata={doctordata} handlePhoneIconClick={handleVideoClick} onEventSelect={handleEventSelect} onReportClick={(userId) => handleMenuItemClick("Report", userId)} />}
           {(activeMenuItem === "Patient List" || patlis === 'true') && <Patientlist patientdata={patients} handlePhoneIconClick={handleVideoClick} data={data} data1={data1} event={selectedEvent} onReportClick={(userId) => handleMenuItemClick("Report", userId)}/>}
           {(activeMenuItem === "Report" && patlis === 'false') &&(<Report userId={userID} onDashboard={()=> handleMenuItemClick("Dashboard")}  onRegimeClick={(patientId) => onRegimeClick(patientId)}   />)}
         </div>

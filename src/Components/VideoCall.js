@@ -1,38 +1,17 @@
-import * as React from 'react';
-import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from "react";
+import { ZIM } from "zego-zim-web";
+import { ZegoUIKitPrebuilt } from "@zegocloud/zego-uikit-prebuilt";
 
-// function randomID(len) {
-//   let result = '';
-//   if (result) return result;
-//   var chars = '12345qwertyuiopasdfgh67890jklmnbvcxzMNBVCZXASDQWERTYHGFUIOLKJP',
-//     maxPos = chars.length,
-//     i;
-//   len = len || 5;
-//   for (i = 0; i < len; i++) {
-//     result += chars.charAt(Math.floor(Math.random() * maxPos));
-//   }
-//   // console.log(result)
-//   return result;
-// }
-
-export function getUrlParams(
-  url = window.location.href
-) {
-  let urlStr = url.split('?')[1];
-  return new URLSearchParams(urlStr);
-}
-
-
-export default function App({onMeetEnd,doctorId}) {
+export default function VideoCall({onMeetEnd,doctorId}) {
 
   const [patients, setPatients] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [documentId, setdocumentId] = useState([]);
-  const [doctor_id, setdoctor_id] = useState([]);
-  const [doctorName, setdoctorName] = useState([]);
+  const [documentId, setDocumentId] = useState(null);
+  const [patientId, setpatientId] = useState(null);
+  const [doctor_Id, setdoctor_Id] = useState(null);
+  const [patientName, setpatientName] = useState(null);
+  const [doctorName, setdoctorName] = useState(null);
 
   useEffect(() => {
     const fetchPatientInfo = async () => {
@@ -44,16 +23,17 @@ export default function App({onMeetEnd,doctorId}) {
 
         if (response.ok) {
           setPatients(data);
-          console.log("DATA",patients)
-          setdocumentId(patients.health_tracker.meeting_link)
-          setdoctor_id(patients.doctor_id)
-          setdoctorName(patients.doctor_assigned)
-          console.log("VIDEOCALL",documentId,doctorName,doctor_id)
+          console.log(data)
+          setDocumentId(data.health_tracker.meeting_link);
+          setpatientId(data.patient_id);
+          setdoctor_Id(data.doctor_id)
+          setdoctorName(data.doctor_assigned)
+          setpatientName(data.user_id);
         } else {
-          setError(data.detail || "Failed to fetch patient information");
+          setError(data.detail || 'Failed to fetch patient information');
         }
       } catch (error) {
-        setError("Error fetching patient information");
+        setError('Error fetching patient information');
       } finally {
         setLoading(false);
       }
@@ -61,68 +41,93 @@ export default function App({onMeetEnd,doctorId}) {
 
     fetchPatientInfo();
   }, [doctorId]);
-  
+
   useEffect(() => {
-    setPatients(patients);
-    setdocumentId(documentId)
-    setdoctorName(doctorName)
-    setdoctor_id(doctor_id)
-    console.log("patients",patients);
-  }, [patients,documentId,doctorName,doctor_id]);
+    console.log("Checking dependencies:", documentId, patientId, patientName, doctor_Id, doctorName);
+    if (documentId && patientId && patientName && doctor_Id && doctorName) {
+      init();
+    }
+  }, [documentId,patientId,patientName,doctor_Id,doctorName]);
 
-  console.log(doctorId)
-  const roomID = getUrlParams().get('roomID') || "documentId";
+  const [userInfo, setUserInfo] = useState({
+    userName: "",
+    userId: "",
+  });
+  const zeroCloudInstance = useRef(null);
 
-  let myMeeting = async (element) => {
-    // generate Kit Token
+  async function init() {
+    const userId = doctor_Id; // You can keep this as-is
+    const userName = doctorName; // You can keep this as-is
+    setUserInfo({
+      userName,
+      userId,
+    });
+    console.log(userInfo)
     const appID = 1455965454;
     const serverSecret = "c49644efc7346cc2a7a899aed401ad76";
-    const kitToken =  ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, "documentId", "4321","doctor 1");
 
-    // Create instance object from Kit Token.
-    const zp = ZegoUIKitPrebuilt.create(kitToken);
-    // start the call
-    zp.joinRoom({
-      container: element,
-      showPreJoinView: false,
-      turnOnMicrophoneWhenJoining: false,
-      turnOnCameraWhenJoining: false,
-      showLeavingView: false,
-      showLeaveRoomConfirmDialog: false,
-      sharedLinks: [
-        {
-          name: 'Personal link',
-          url:
-            window.location.protocol + '//' + 
-            window.location.host + window.location.pathname +
-            '?roomID=' +
-            roomID,
-        },
-      ],
-      scenario: {
-        mode: ZegoUIKitPrebuilt.OneONoneCall, // To implement 1-on-1 calls, modify the parameter here to [ZegoUIKitPrebuilt.OneONoneCall].
-      },
-      onLeaveRoom: () => {
-        // Navigate to home screen
-        onMeetEnd();
-        // window.location.reload();
-      },
-    });
+    const KitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
+      appID,
+      serverSecret,
+      documentId,
+      userId,
+      userName
+    );
 
-    // Log the URL alone
-    const url =
-      window.location.protocol + '//' + 
-      window.location.host + window.location.pathname +
-      '?roomID=' +
-      roomID;
-    console.log("Shared URL:", url);
-  };
+    zeroCloudInstance.current = ZegoUIKitPrebuilt.create(KitToken);
+
+    // zeroCloudInstance.current.on("call:call-ended", () => {
+    //   console.log("Video call ended");
+    //   onMeetEnd(); // Call the function when the video call ends
+    // });
+    // add plugin
+    zeroCloudInstance.current.addPlugins({ ZIM });
+    
+  }
+
+  function handleSend(callType) {
+    const callee = patientId; // Hardcoded callee userID
+    const calleeUsername = patientName; // Hardcoded callee username
+
+    // send call invitation
+    zeroCloudInstance.current
+    .sendCallInvitation({
+        callees: [{ userID: callee, userName: calleeUsername }],
+        callType: callType,
+        timeout: 60,
+      })
+      .then((res) => {
+        console.warn(res);
+        if (res.errorInvitees.length) {
+          alert("The user does not exist or is offline.");
+          return;
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        return;
+      });
+  }
 
   return (
-    <div
-      className="myCallContainer"
-      ref={myMeeting}
-      style={{ width: '100vw', height: '100vh' }}
-    ></div>
+    <div>
+      <div>My username: <span>{userInfo.userName}</span></div>
+      <div>My userId: <span>{userInfo.userId}</span>
+      </div>
+      <button
+        onClick={() => {
+          handleSend(ZegoUIKitPrebuilt.InvitationTypeVideoCall);
+        }}
+      >
+        Video call
+      </button>
+      <button
+        onClick={() => {
+          handleSend(ZegoUIKitPrebuilt.InvitationTypeVoiceCall);
+        }}
+      >
+        Voice call
+      </button>
+    </div>
   );
 }
