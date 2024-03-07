@@ -560,20 +560,8 @@ const Assessment = () => {
                     <div
                       className={`w-1/3 flex flex-row justify-end items-center gap-5 pr-8`}
                     >
-                      <motion.div
-                        initial="hidden" // Initial animation state
-                        animate="visible" // Animation to the center
-                        variants={iconanime}
-                      >
                         <ShareIcon className={`w-6 h-6`} />
-                      </motion.div>
-                      <motion.div
-                        initial="hidden" // Initial animation state
-                        animate="visible" // Animation to the center
-                        variants={iconanime1}
-                      >
                         <ArrowDownTrayIcon className={`w-6 h-6`} />
-                      </motion.div>
                     </div>
                   </div>
                   <div className="flex flex-row h-[22rem]">

@@ -43,13 +43,19 @@ import {
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-
 const CustomBar = (props) => {
   const { x, y, width, height, fill } = props;
   const radius = 5; // Set the radius for the rounded corner
   return (
     <g>
-      <path d={`M${x},${y + radius} L${x},${y + height} L${x + width},${y + height} L${x + width},${y + radius} Q${x + width},${y} ${x + width - radius},${y} L${x + radius},${y} Q${x},${y} ${x},${y + radius}`} fill={fill} />
+      <path
+        d={`M${x},${y + radius} L${x},${y + height} L${x + width},${
+          y + height
+        } L${x + width},${y + radius} Q${x + width},${y} ${
+          x + width - radius
+        },${y} L${x + radius},${y} Q${x},${y} ${x},${y + radius}`}
+        fill={fill}
+      />
     </g>
   );
 };
@@ -60,11 +66,17 @@ const CustomBar1 = (props) => {
   return (
     <g>
       {/* Render the bar with rounded bottom edges */}
-      <path d={`M${x},${y} L${x},${y + height} L${x + width},${y + height} L${x + width},${y} Q${x + width},${y + radius} ${x + width - radius},${y + radius} L${x + radius},${y + radius} Q${x},${y + radius} ${x},${y} Z`} fill={fill} />
+      <path
+        d={`M${x},${y} L${x},${y + height} L${x + width},${y + height} L${
+          x + width
+        },${y} Q${x + width},${y + radius} ${x + width - radius},${
+          y + radius
+        } L${x + radius},${y + radius} Q${x},${y + radius} ${x},${y} Z`}
+        fill={fill}
+      />
     </g>
   );
 };
-
 
 const Report = ({ onDashboard, userId, onRegimeClick }) => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -106,7 +118,8 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
           const squatsExerciseData = data?.Exercises?.squats.values || [];
           const pushupsExerciseData = data?.Exercises?.pushups.values || [];
           const pullupsExerciseData = data?.Exercises?.pullups.values || [];
-          const leghipExerciseData = data?.Exercises?.LegHipRotation.values || [];
+          const leghipExerciseData =
+            data?.Exercises?.LegHipRotation.values || [];
           setRunningData(runningExerciseData.map((value) => parseFloat(value)));
           setsquatsData(squatsExerciseData.map((value) => parseFloat(value)));
           setpushupsData(pushupsExerciseData.map((value) => parseFloat(value)));
@@ -150,7 +163,6 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
       amt: 24,
     },
     {
-      
       uv: -30,
       pv: 13,
       amt: 22,
@@ -162,7 +174,6 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
       amt: 22,
     },
     {
-      
       uv: -27,
       pv: 39,
       amt: 20,
@@ -174,7 +185,6 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
       amt: 21,
     },
     {
-     
       uv: -23,
       pv: 38,
       amt: 25,
@@ -346,7 +356,6 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
       pv: 90,
       amt: 2290,
     },
-    
   ];
 
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -392,20 +401,34 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                 className={`w-2/3 h-full  text-start flex flex-col justify-center`}
               >
                 <Typography variant="h5" color="white" className="font-poppins">
-                {patients.user_id}
+                  {patients.user_id}
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium font-poppins">
-                32 , {patientDetails.Gender}
+                <Typography
+                  variant="h7"
+                  color="white"
+                  className="font-medium font-poppins"
+                >
+                  32 , {patientDetails.Gender}
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium font-poppins">
+                <Typography
+                  variant="h7"
+                  color="white"
+                  className="font-medium font-poppins"
+                >
                   ID: 123456
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium font-poppins">
-                {report.map((report, index) => (
+                <Typography
+                  variant="h7"
+                  color="white"
+                  className="font-medium font-poppins"
+                >
+                  {report.map((report, index) => (
                     <div key={index}>
                       {report && (
                         <div>
-                          <span className="font-poppins">Diagnosis {index + 1}: </span>
+                          <span className="font-poppins">
+                            Diagnosis {index + 1}:{" "}
+                          </span>
                           <span>{report}</span>
                         </div>
                       )}
@@ -421,9 +444,13 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                 className={`w-3/4 h-full  flex flex-col text-end justify-center`}
               >
                 <Typography variant="h4" color="white" className="font-poppins">
-                {patients.doctor_assigned}
+                  {patients.doctor_assigned}
                 </Typography>
-                <Typography variant="h6" color="white" className="font-medium font-poppins">
+                <Typography
+                  variant="h6"
+                  color="white"
+                  className="font-medium font-poppins"
+                >
                   Cardialogist
                 </Typography>
               </div>
@@ -439,7 +466,29 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
             </div>
 
             <div className={`w-5/6 h-1/3  flex ml-auto`}>
-              <div className={`w-3/4 flex ml-auto justify-end items-center`} onClick={() => onRegimeClick(patients.patient_id)}>
+              <div className={`w-3/5 h-full`}>
+                <Button className="flex items-center gap-2 font-poppins">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                    stroke="currentColor"
+                    className="h-5 w-5"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"
+                    />
+                  </svg>
+                  View Assessment Report
+                </Button>
+              </div>
+              <div
+                className={`w-2/5 flex ml-auto justify-end items-center`}
+                onClick={() => onRegimeClick(patients.patient_id)}
+              >
                 <Button className="flex items-center gap-2 font-poppins">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -481,16 +530,28 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                 className={`w-2/3 h-full  text-start flex flex-col justify-center`}
               >
                 <Typography variant="h5" color="white" className="font-poppins">
-                {patients.user_id}
+                  {patients.user_id}
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium font-poppins">
-                32 , {patientDetails.Gender}
+                <Typography
+                  variant="h7"
+                  color="white"
+                  className="font-medium font-poppins"
+                >
+                  32 , {patientDetails.Gender}
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium font-poppins">
+                <Typography
+                  variant="h7"
+                  color="white"
+                  className="font-medium font-poppins"
+                >
                   ID: 123456
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium font-poppins">
-                {report.map((report, index) => (
+                <Typography
+                  variant="h7"
+                  color="white"
+                  className="font-medium font-poppins"
+                >
+                  {report.map((report, index) => (
                     <div key={index}>
                       {report && (
                         <div>
@@ -508,7 +569,12 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
             className={`w-1/5 h-full px-8  flex flex-col items-center justify-center`}
           >
             <ArrowUturnLeftIcon className="w-16 h-16" onClick={onDashboard} />
-            <Typography variant="h5" color="white" onClick={onDashboard} className="font-poppins">
+            <Typography
+              variant="h5"
+              color="white"
+              onClick={onDashboard}
+              className="font-poppins"
+            >
               Back to Dashboard
             </Typography>
           </div>
@@ -520,7 +586,11 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                 <Typography variant="h4" color="white" className="font-poppins">
                   {patients.doctor_assigned}
                 </Typography>
-                <Typography variant="h6" color="white" className="font-medium font-poppins">
+                <Typography
+                  variant="h6"
+                  color="white"
+                  className="font-medium font-poppins"
+                >
                   Cardialogist
                 </Typography>
               </div>
@@ -537,8 +607,29 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
 
             <div className={`w-full h-1/3  flex ml-auto`}>
               <div className={`w-3/4 flex ml-auto justify-center items-center`}>
-                <div className={`w-3/4 flex ml-auto justify-end items-center`}
-                onClick={() => onRegimeClick(patients.patient_id)}>
+                <div className={`w-3/5 h-full`}>
+                  <Button className="flex items-center gap-2 font-poppins">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={2}
+                      stroke="currentColor"
+                      className="h-5 w-5"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"
+                      />
+                    </svg>
+                    View Assessment Report
+                  </Button>
+                </div>
+                <div
+                  className={`w-2/5 flex ml-auto justify-end items-center`}
+                  onClick={() => onRegimeClick(patients.patient_id)}
+                >
                   <Button className="flex items-center gap-2 font-poppins">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -570,7 +661,12 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
             className={`w-full h-1/6 px-8  flex flex-col items-center justify-center`}
           >
             <ArrowUturnLeftIcon className="w-16 h-16" onClick={onDashboard} />
-            <Typography variant="h5" color="white" onClick={onDashboard} className="font-poppins">
+            <Typography
+              variant="h5"
+              color="white"
+              onClick={onDashboard}
+              className="font-poppins"
+            >
               Back to Dashboard
             </Typography>
           </div>
@@ -591,8 +687,12 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                 <div
                   className={`w-2/3 h-full  text-start flex flex-col justify-center`}
                 >
-                  <Typography variant="h5" color="white" className="font-poppins">
-                  {patients.user_id}
+                  <Typography
+                    variant="h5"
+                    color="white"
+                    className="font-poppins"
+                  >
+                    {patients.user_id}
                   </Typography>
                   <Typography
                     variant="h7"
@@ -614,15 +714,17 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                     className="font-medium font-poppins"
                   >
                     {report.map((report, index) => (
-                    <div key={index}>
-                      {report && (
-                        <div>
-                          <span className="font-poppins">Diagnosis {index + 1}: </span>
-                          <span>{report}</span>
-                        </div>
-                      )}
-                    </div>
-                  ))}
+                      <div key={index}>
+                        {report && (
+                          <div>
+                            <span className="font-poppins">
+                              Diagnosis {index + 1}:{" "}
+                            </span>
+                            <span>{report}</span>
+                          </div>
+                        )}
+                      </div>
+                    ))}
                   </Typography>
                 </div>
               </div>
@@ -633,8 +735,12 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                 <div
                   className={`w-3/4 h-full  flex flex-col text-end justify-center`}
                 >
-                  <Typography variant="h4" color="white" className="font-poppins">
-                  {patients.doctor_assigned}
+                  <Typography
+                    variant="h4"
+                    color="white"
+                    className="font-poppins"
+                  >
+                    {patients.doctor_assigned}
                   </Typography>
                   <Typography
                     variant="h6"
@@ -661,8 +767,27 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                 <div
                   className={`w-3/4 flex ml-auto justify-center items-center`}
                 >
+                  <div className={`w-3/5 h-full`}>
+                    <Button className="flex items-center gap-2 font-poppins">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2}
+                        stroke="currentColor"
+                        className="h-5 w-5"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"
+                        />
+                      </svg>
+                      View Assessment Report
+                    </Button>
+                  </div>
                   <div
-                    className={`w-3/4 flex ml-auto justify-end items-center`}
+                    className={`w-2/5 flex ml-auto justify-end items-center`}
                     onClick={() => onRegimeClick(patients.patient_id)}
                   >
                     <Button className="flex items-center gap-2 font-poppins">
@@ -697,7 +822,12 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
             className={`w-full h-1/5 px-8  flex flex-col items-end justify-center`}
           >
             <ArrowUturnLeftIcon className="w-16 h-16" onClick={onDashboard} />
-            <Typography variant="h5" color="white" onClick={onDashboard} className="font-poppins">
+            <Typography
+              variant="h5"
+              color="white"
+              onClick={onDashboard}
+              className="font-poppins"
+            >
               Back to Dashboard
             </Typography>
           </div>
@@ -716,20 +846,34 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                 className={`w-2/3 h-full  text-start flex flex-col justify-center`}
               >
                 <Typography variant="h5" color="white" className="font-poppins">
-                {patients.user_id}
+                  {patients.user_id}
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium font-poppins">
-                32 , {patientDetails.Gender}
+                <Typography
+                  variant="h7"
+                  color="white"
+                  className="font-medium font-poppins"
+                >
+                  32 , {patientDetails.Gender}
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium font-poppins">
+                <Typography
+                  variant="h7"
+                  color="white"
+                  className="font-medium font-poppins"
+                >
                   ID: 123456
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium font-poppins">
-                {report.map((report, index) => (
+                <Typography
+                  variant="h7"
+                  color="white"
+                  className="font-medium font-poppins"
+                >
+                  {report.map((report, index) => (
                     <div key={index}>
                       {report && (
                         <div>
-                          <span className="font-poppins">Diagnosis {index + 1}: </span>
+                          <span className="font-poppins">
+                            Diagnosis {index + 1}:{" "}
+                          </span>
                           <span>{report}</span>
                         </div>
                       )}
@@ -746,13 +890,19 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                 className={`w-3/4 h-full  flex flex-col text-end justify-center`}
               >
                 <Typography variant="h4" color="white" className="font-poppins">
-                {patients.doctor_assigned}
+                  {patients.doctor_assigned}
                 </Typography>
-                <Typography variant="h6" color="white" className="font-medium font-poppins">
+                <Typography
+                  variant="h6"
+                  color="white"
+                  className="font-medium font-poppins"
+                >
                   Cardialogist
                 </Typography>
               </div>
-              <div className={`w-1/4 h-full  flex justify-center items-center `}>
+              <div
+                className={`w-1/4 h-full  flex justify-center items-center `}
+              >
                 <Avatar
                   size="xl"
                   alt="avatar"
@@ -765,7 +915,29 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
 
             <div className={`w-full h-1/3  flex ml-auto`}>
               <div className={`w-3/4 flex ml-auto justify-center items-center`}>
-                <div className={`w-3/4 flex ml-auto justify-end items-center`} onClick={() => onRegimeClick(patients.patient_id)}>
+              <div className={`w-3/5 h-full`}>
+              <Button className="flex items-center gap-2 font-poppins">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                    stroke="currentColor"
+                    className="h-5 w-5"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"
+                    />
+                  </svg>
+                  View Assessment Report
+                </Button>    
+              </div>
+                <div
+                  className={`w-2/5 flex ml-auto justify-end items-center`}
+                  onClick={() => onRegimeClick(patients.patient_id)}
+                >
                   <Button className="flex items-center gap-2 font-poppins">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -797,7 +969,12 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
             className={`w-full h-[5rem] px-8  flex flex-col items-center justify-center`}
           >
             <ArrowUturnLeftIcon className="w-12 h-12" onClick={onDashboard} />
-            <Typography variant="h5" color="white" onClick={onDashboard} className="font-poppins">
+            <Typography
+              variant="h5"
+              color="white"
+              onClick={onDashboard}
+              className="font-poppins"
+            >
               Back to Dashboard
             </Typography>
           </div>
@@ -818,20 +995,34 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                 className={`w-full h-full  text-center flex flex-col justify-center`}
               >
                 <Typography variant="h5" color="white" className="font-poppins">
-                {patients.user_id}
+                  {patients.user_id}
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium font-poppins">
-                32 , {patientDetails.Gender}
+                <Typography
+                  variant="h7"
+                  color="white"
+                  className="font-medium font-poppins"
+                >
+                  32 , {patientDetails.Gender}
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium font-poppins">
+                <Typography
+                  variant="h7"
+                  color="white"
+                  className="font-medium font-poppins"
+                >
                   ID: 123456
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium font-poppins">
-                {report.map((report, index) => (
+                <Typography
+                  variant="h7"
+                  color="white"
+                  className="font-medium font-poppins"
+                >
+                  {report.map((report, index) => (
                     <div key={index}>
                       {report && (
                         <div>
-                          <span className="font-poppins">Diagnosis {index + 1}: </span>
+                          <span className="font-poppins">
+                            Diagnosis {index + 1}:{" "}
+                          </span>
                           <span>{report}</span>
                         </div>
                       )}
@@ -863,9 +1054,13 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                 className={`w-full h-full  flex flex-col text-center justify-center`}
               >
                 <Typography variant="h4" color="white" className="font-poppins">
-                {patients.doctor_assigned}
+                  {patients.doctor_assigned}
                 </Typography>
-                <Typography variant="h6" color="white" className="font-medium font-poppins">
+                <Typography
+                  variant="h6"
+                  color="white"
+                  className="font-medium font-poppins"
+                >
                   Cardialogist
                 </Typography>
               </div>
@@ -873,8 +1068,29 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
 
             <div className={`w-full h-1/3 flex justify-center `}>
               <div className={`w-full flex  justify-center items-center`}>
-                <div className={`w-full flex justify-center items-center font-poppins`}
-                onClick={() => onRegimeClick(patients.patient_id)}>
+              <div className={`w-full h-full`}>
+              <Button className="flex items-center gap-2 font-poppins">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                    stroke="currentColor"
+                    className="h-5 w-5"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"
+                    />
+                  </svg>
+                  View Assessment Report
+                </Button>    
+              </div>
+                <div
+                  className={`w-full flex justify-center items-center font-poppins`}
+                  onClick={() => onRegimeClick(patients.patient_id)}
+                >
                   <Button className="flex items-center gap-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -930,14 +1146,13 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                       bottom: 5,
                     }}
                   >
-                    
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />
 
                     <ReferenceLine y={0} stroke="#000" />
-                    <Bar dataKey="pv" fill="#435fe2" shape={<CustomBar />}/>
-                    <Bar dataKey="uv" fill="#e28743" shape={<CustomBar1 />}/>
+                    <Bar dataKey="pv" fill="#435fe2" shape={<CustomBar />} />
+                    <Bar dataKey="uv" fill="#e28743" shape={<CustomBar1 />} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -994,57 +1209,75 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
               </div>
             </Card>
           </div>
-          <div className={`w-full h-2/6  flex flex-row gap-4 px-3 py-2 justify-center`}>
+          <div
+            className={`w-full h-2/6  flex flex-row gap-4 px-3 py-2 justify-center`}
+          >
             <div className={`w-2/3 h-full`}>
               <Card className="bg-white w-full h-full flex flex-col p-2">
                 <div className="h-1/4 flex flex-row justify-between items-center">
-                  <Typography variant="h6" color="black" className="text-start text-sm font-poppins">
+                  <Typography
+                    variant="h6"
+                    color="black"
+                    className="text-start text-sm font-poppins"
+                  >
                     ROM
                   </Typography>
-                  <Typography variant="h7" color="black" className="text-start text-sm font-poppins">
+                  <Typography
+                    variant="h7"
+                    color="black"
+                    className="text-start text-sm font-poppins"
+                  >
                     Left Leg
                   </Typography>
                 </div>
                 <div className="flex flex-col justify-center items-center h-3/4">
-                <CircularProgressbar
-                        value={75}
-                        text={75}
-                        circleRatio={0.75}
-                        styles={buildStyles({
-                          rotation: 1 / 2 + 1 / 8,
-                          trailColor: "#eee",
-                          pathColor: "red",
-                          textColor: "black",
-                          textSize: "22px",
-                        })}
-                      />
+                  <CircularProgressbar
+                    value={75}
+                    text={75}
+                    circleRatio={0.75}
+                    styles={buildStyles({
+                      rotation: 1 / 2 + 1 / 8,
+                      trailColor: "#eee",
+                      pathColor: "red",
+                      textColor: "black",
+                      textSize: "22px",
+                    })}
+                  />
                 </div>
               </Card>
             </div>
-            
+
             <div className={`w-2/3 h-full`}>
               <Card className="bg-white w-full h-full flex flex-col p-2">
                 <div className="h-1/4 flex flex-row justify-between items-center">
-                  <Typography variant="h6" color="black" className="text-start text-sm font-poppins">
+                  <Typography
+                    variant="h6"
+                    color="black"
+                    className="text-start text-sm font-poppins"
+                  >
                     ROM
                   </Typography>
-                  <Typography variant="h7" color="black" className="text-start text-sm font-poppins">
+                  <Typography
+                    variant="h7"
+                    color="black"
+                    className="text-start text-sm font-poppins"
+                  >
                     Right Leg
                   </Typography>
                 </div>
                 <div className="flex flex-col justify-center items-center h-3/4">
-                <CircularProgressbar
-                        value={64}
-                        text={64}
-                        circleRatio={0.75}
-                        styles={buildStyles({
-                          rotation: 1 / 2 + 1 / 8,
-                          trailColor: "#eee",
-                          pathColor: "cyan",
-                          textColor: "black",
-                          textSize: "22px",
-                        })}
-                      />
+                  <CircularProgressbar
+                    value={64}
+                    text={64}
+                    circleRatio={0.75}
+                    styles={buildStyles({
+                      rotation: 1 / 2 + 1 / 8,
+                      trailColor: "#eee",
+                      pathColor: "cyan",
+                      textColor: "black",
+                      textSize: "22px",
+                    })}
+                  />
                 </div>
               </Card>
             </div>
@@ -1063,74 +1296,74 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
               className="w-full h-full bg-white flex flex-col gap-2 pt-2"
             >
               <div className={`w-full flex flex-row`}>
-              <div className="w-1/2 flex flex-col">
-                <Typography
-                  variant="h7"
-                  color="gray"
-                  className="flex text-start px-5 font-normal font-poppins"
-                >
-                  Sugar Level
-                </Typography>
-                <Typography
-                  variant="h5"
-                  color="black"
-                  className="flex text-start px-5 font-poppins"
-                >
-                  220 mg/dl
-                </Typography>
+                <div className="w-1/2 flex flex-col">
+                  <Typography
+                    variant="h7"
+                    color="gray"
+                    className="flex text-start px-5 font-normal font-poppins"
+                  >
+                    Sugar Level
+                  </Typography>
+                  <Typography
+                    variant="h5"
+                    color="black"
+                    className="flex text-start px-5 font-poppins"
+                  >
+                    220 mg/dl
+                  </Typography>
+                </div>
+                <div className="w-1/2 flex flex-col items-end">
+                  <Typography
+                    variant="h6"
+                    color="black"
+                    className="flex text-start px-5 font-semibold font-poppins"
+                  >
+                    25%
+                  </Typography>
+                  <Typography
+                    variant="h6"
+                    color="gray"
+                    className="flex text-start px-5 font-poppins"
+                  >
+                    VS LAST MONTH
+                  </Typography>
+                </div>
               </div>
-              <div className="w-1/2 flex flex-col items-end">
-                <Typography
-                  variant="h6"
-                  color="black"
-                  className="flex text-start px-5 font-semibold font-poppins"
-                >
-                  25%
-                </Typography>
-                <Typography
-                  variant="h6"
-                  color="gray"
-                  className="flex text-start px-5 font-poppins"
-                >
-                  VS LAST MONTH
-                </Typography>
-              </div>
-            </div>
               <div className="w-full h-full">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart
-                  width={500}
-                  height={400}
-                  data={data2}
-                  margin={{
-                    top: 10,
-                    right: 30,
-                    left: 0,
-                    bottom: 0,
-                  }}
-                >
-                  <defs>
-                    <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="red" stopOpacity={0.5} />
-                      <stop
-                        offset="95%"
-                        stopColor="transparent"
-                        stopOpacity={0}
-                      />
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray={'10 5'}/>
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Area
-                    dataKey="uv"
-                    stroke="red"
-                    strokeWidth={2}
-                    fill="url(#colorUv)"
-                  />
-                </AreaChart>
-              </ResponsiveContainer>
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart
+                    width={500}
+                    height={400}
+                    data={data2}
+                    margin={{
+                      top: 10,
+                      right: 30,
+                      left: 0,
+                      bottom: 0,
+                    }}
+                  >
+                    <defs>
+                      <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="red" stopOpacity={0.5} />
+                        <stop
+                          offset="95%"
+                          stopColor="transparent"
+                          stopOpacity={0}
+                        />
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray={"10 5"} />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Area
+                      dataKey="uv"
+                      stroke="red"
+                      strokeWidth={2}
+                      fill="url(#colorUv)"
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
               </div>
             </Card>
           </div>
@@ -1148,36 +1381,36 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                 Patient Analytics
               </Typography>
               <div className="w-full h-full">
-              <ResponsiveContainer width="100%" height="100%">
-                      <LineChart
-                        width={700}
-                        height={700}
-                        data={data5}
-                        margin={{
-                          top: 10,
-                          right: 30,
-                          left: -10,
-                          bottom: 0,
-                        }}
-                      >
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip />
-                        <Line
-                          type="monotone"
-                          dataKey="pv"
-                          stroke="#8884d8"
-                          strokeWidth={4}
-                          strokeDasharray={"25 4"}
-                        />
-                        <Line
-                          type="monotone"
-                          dataKey="uv"
-                          stroke="#82ca9d"
-                          strokeWidth={4}
-                        />
-                      </LineChart>
-                    </ResponsiveContainer>
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart
+                    width={700}
+                    height={700}
+                    data={data5}
+                    margin={{
+                      top: 10,
+                      right: 30,
+                      left: -10,
+                      bottom: 0,
+                    }}
+                  >
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Line
+                      type="monotone"
+                      dataKey="pv"
+                      stroke="#8884d8"
+                      strokeWidth={4}
+                      strokeDasharray={"25 4"}
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="uv"
+                      stroke="#82ca9d"
+                      strokeWidth={4}
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
               </div>
             </Card>
           </div>

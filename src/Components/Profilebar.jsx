@@ -671,7 +671,7 @@ const Profilebar = ({onRegimeClick, handleVideoClick,patlis}) => {
         }`}
       >
        
-          {activeMenuItem!="Report" &&
+          {activeMenuItem!="Report" || true &&
           <div
             className={`w-full h-20 bg-gradient-to-b from-blue-gray-500 to-gray-600 flex flex-row items-center  ${
               screenWidth < 460 ? "pl-4 gap-4" : "pl-12 gap-8"
@@ -774,11 +774,12 @@ const Profilebar = ({onRegimeClick, handleVideoClick,patlis}) => {
             </div>
           </div>
 }
-        <div className={`w-full ${screenWidth<1200 || activeMenuItem === "Report"?"h-full":"h-5/6 "}`}>
-          {(activeMenuItem === "Dashboard" && patlis === 'false') && <Dashboard patientdata={patients} doctordata={doctordata} handlePhoneIconClick={handleVideoClick} onEventSelect={handleEventSelect} onReportClick={(userId) => handleMenuItemClick("Report", userId)} />}
+        <div className={`w-full h-full ${screenWidth<1200 || activeMenuItem === "Report"?"h-full":"h-5/6 "}`}>
+          {/* {(activeMenuItem === "Dashboard" && patlis === 'false') && <Dashboard patientdata={patients} doctordata={doctordata} handlePhoneIconClick={handleVideoClick} onEventSelect={handleEventSelect} onReportClick={(userId) => handleMenuItemClick("Report", userId)} />}
           {(activeMenuItem === "Patient List" || patlis === 'true') && <Patientlist patientdata={patients} handlePhoneIconClick={handleVideoClick} data={data} data1={data1} event={selectedEvent} onReportClick={(userId) => handleMenuItemClick("Report", userId)}/>}
           {(activeMenuItem === "Report" && patlis === 'false') &&(<Report userId={userID} onDashboard={()=> handleMenuItemClick("Dashboard")}  onRegimeClick={(patientId) => onRegimeClick(patientId)}   />)}
-          {(activeMenuItem === "Analysis") &&(<Assessment  />)}
+          {(activeMenuItem === "Analysis") &&(<Assessment  />)} */}
+          <Report/>
         </div>
         
       </div>
