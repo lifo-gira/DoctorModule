@@ -68,7 +68,6 @@ const Profilebar = ({onRegimeClick, handleVideoClick,patlis}) => {
   const menuItems = [
     "Dashboard",
     "Patient List",
-    "Analysis",
     "Schedule",
   ];
   const [activeMenuItem, setActiveMenuItem] = useState(menuItems[0]);
@@ -475,24 +474,13 @@ const Profilebar = ({onRegimeClick, handleVideoClick,patlis}) => {
                 </ListItemPrefix>
                 Patient List
               </ListItem>
-              <ListItem
-                className={`rounded-none font-poppins ${
-                  screenWidth < 1535 ? "w-2/3 px-4" : " w-full p-3"
-                } ${activeMenuItem === "Analysis" ? "bg-gradient-to-r from-white to-cyan-200" : "transparent"} `}
-                selected={open === 3}
-                onClick={() => handleItemClick(3)}
-              >
-                <ListItemPrefix>
-                  <ChartBarIcon className="h-5 w-5" />
-                </ListItemPrefix>
-                Analysis
-              </ListItem>
+              
               <ListItem
                 className={`rounded-none font-poppins ${
                   screenWidth < 1535 ? "w-2/3 px-4" : " w-full p-3"
                 } ${activeMenuItem === "Schedule" ? "bg-gradient-to-r from-white to-cyan-200" : "transparent" }`}
-                selected={open === 4}
-                onClick={() => handleItemClick(4)}
+                selected={open === 3}
+                onClick={() => handleItemClick(3)}
               >
                 <ListItemPrefix>
                   <CalendarDaysIcon className="h-5 w-5" />
@@ -571,12 +559,11 @@ const Profilebar = ({onRegimeClick, handleVideoClick,patlis}) => {
                 <ListItem
                   className={`${
                     screenWidth < 1535 ? "w-5/6 px-4" : " w-full p-1"
-                  }`}
+                  } ${activeMenuItem === "Dashboard" && activeMenuItem != "Report"
+                  ? "bg-gradient-to-r from-white to-cyan-200"
+                  : "transparent"}`}
                   selected={open === 1}
                   onClick={() => handleItemClick(1)}
-                  style={{
-                    backgroundColor: activeMenuItem === "Dashboard" && activeMenuItem != "Report" ? "cyan" : "transparent",
-                  }}
                 >
                   <ListItemPrefix>
                     <Squares2X2Icon className="h-4 w-4" />
@@ -592,12 +579,11 @@ const Profilebar = ({onRegimeClick, handleVideoClick,patlis}) => {
                 <ListItem
                   className={`${
                     screenWidth < 1535 ? "w-5/6 px-4" : " w-full p-3"
-                  }`}
+                  } ${activeMenuItem === "Patient List"
+                  ? "bg-gradient-to-r from-white to-cyan-200"
+                  : "transparent"}`}
                   selected={open === 2}
                   onClick={() => handleItemClick(2)}
-                  style={{
-                    backgroundColor: activeMenuItem === "Patient List" ? "cyan" : "transparent",
-                  }}
                 >
                   <ListItemPrefix>
                     <UsersIcon className="h-5 w-5" />
@@ -607,27 +593,11 @@ const Profilebar = ({onRegimeClick, handleVideoClick,patlis}) => {
                 <ListItem
                   className={`${
                     screenWidth < 1535 ? "w-5/6 px-4" : " w-full p-3"
-                  }`}
+                  } ${activeMenuItem === "Schedule"
+                  ? "bg-gradient-to-r from-white to-cyan-200"
+                  : "transparent"}`}
                   selected={open === 3}
                   onClick={() => handleItemClick(3)}
-                  style={{
-                    backgroundColor: activeMenuItem === "Analysis" ? "cyan" : "transparent",
-                  }}
-                >
-                  <ListItemPrefix>
-                    <ChartBarIcon className="h-5 w-5" />
-                  </ListItemPrefix>
-                  Analysis
-                </ListItem>
-                <ListItem
-                  className={`${
-                    screenWidth < 1535 ? "w-5/6 px-4" : " w-full p-3"
-                  }`}
-                  selected={open === 4}
-                  onClick={() => handleItemClick(4)}
-                  style={{
-                    backgroundColor: activeMenuItem === "Schedule" ? "cyan" : "transparent",
-                  }}
                 >
                   <ListItemPrefix>
                     <CalendarDaysIcon className="h-5 w-5" />
@@ -671,7 +641,7 @@ const Profilebar = ({onRegimeClick, handleVideoClick,patlis}) => {
         }`}
       >
        
-          {activeMenuItem!="Report" || true &&
+          {activeMenuItem!="Report" &&
           <div
             className={`w-full h-20 bg-gradient-to-b from-blue-gray-500 to-gray-600 flex flex-row items-center  ${
               screenWidth < 460 ? "pl-4 gap-4" : "pl-12 gap-8"
@@ -774,12 +744,11 @@ const Profilebar = ({onRegimeClick, handleVideoClick,patlis}) => {
             </div>
           </div>
 }
-        <div className={`w-full h-full ${screenWidth<1200 || activeMenuItem === "Report"?"h-full":"h-5/6 "}`}>
-          {/* {(activeMenuItem === "Dashboard" && patlis === 'false') && <Dashboard patientdata={patients} doctordata={doctordata} handlePhoneIconClick={handleVideoClick} onEventSelect={handleEventSelect} onReportClick={(userId) => handleMenuItemClick("Report", userId)} />}
+        <div className={`w-full ${screenWidth<1200 || activeMenuItem === "Report"?"h-full":"h-5/6 "}`}>
+          {(activeMenuItem === "Dashboard" && patlis === 'false') && <Dashboard patientdata={patients} doctordata={doctordata} handlePhoneIconClick={handleVideoClick} onEventSelect={handleEventSelect} onReportClick={(userId) => handleMenuItemClick("Report", userId)} />}
           {(activeMenuItem === "Patient List" || patlis === 'true') && <Patientlist patientdata={patients} handlePhoneIconClick={handleVideoClick} data={data} data1={data1} event={selectedEvent} onReportClick={(userId) => handleMenuItemClick("Report", userId)}/>}
           {(activeMenuItem === "Report" && patlis === 'false') &&(<Report userId={userID} onDashboard={()=> handleMenuItemClick("Dashboard")}  onRegimeClick={(patientId) => onRegimeClick(patientId)}   />)}
-          {(activeMenuItem === "Analysis") &&(<Assessment  />)} */}
-          <Report/>
+          {(activeMenuItem === "Analysis") &&(<Assessment  />)}
         </div>
         
       </div>
