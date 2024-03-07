@@ -36,6 +36,35 @@ import {
   Line,
 } from "recharts";
 
+import {
+  CircularProgressbar,
+  buildStyles,
+  CircularProgressbarWithChildren,
+} from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
+
+
+const CustomBar = (props) => {
+  const { x, y, width, height, fill } = props;
+  const radius = 5; // Set the radius for the rounded corner
+  return (
+    <g>
+      <path d={`M${x},${y + radius} L${x},${y + height} L${x + width},${y + height} L${x + width},${y + radius} Q${x + width},${y} ${x + width - radius},${y} L${x + radius},${y} Q${x},${y} ${x},${y + radius}`} fill={fill} />
+    </g>
+  );
+};
+
+const CustomBar1 = (props) => {
+  const { x, y, width, height, fill } = props;
+  const radius = 5; // Set the radius for the rounded corner
+  return (
+    <g>
+      {/* Render the bar with rounded bottom edges */}
+      <path d={`M${x},${y} L${x},${y + height} L${x + width},${y + height} L${x + width},${y} Q${x + width},${y + radius} ${x + width - radius},${y + radius} L${x + radius},${y + radius} Q${x},${y + radius} ${x},${y} Z`} fill={fill} />
+    </g>
+  );
+};
+
 
 const Report = ({ onDashboard, userId, onRegimeClick }) => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -115,136 +144,136 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
 
   const data = [
     {
-      name: "Page A",
-      uv: 4000,
-      pv: 2400,
-      amt: 2400,
+      name: "11 Jun",
+      uv: -40,
+      pv: 24,
+      amt: 24,
     },
     {
-      name: "Page B",
-      uv: -3000,
-      pv: 1398,
-      amt: 2210,
+      
+      uv: -30,
+      pv: 13,
+      amt: 22,
     },
     {
-      name: "Page C",
-      uv: -2000,
-      pv: -9800,
-      amt: 2290,
+      name: "12 Jun",
+      uv: -60,
+      pv: 98,
+      amt: 22,
     },
     {
-      name: "Page D",
-      uv: 2780,
-      pv: 3908,
-      amt: 2000,
+      
+      uv: -27,
+      pv: 39,
+      amt: 20,
     },
     {
-      name: "Page E",
-      uv: -1890,
-      pv: 4800,
-      amt: 2181,
+      name: "13 Jun",
+      uv: -18,
+      pv: 50,
+      amt: 21,
     },
     {
-      name: "Page F",
-      uv: 2390,
-      pv: -3800,
-      amt: 2500,
+     
+      uv: -23,
+      pv: 38,
+      amt: 25,
     },
     {
-      name: "Page G",
-      uv: 3490,
-      pv: 4300,
-      amt: 2100,
+      name: "14 Jun",
+      uv: -80,
+      pv: 43,
+      amt: 21,
     },
   ];
 
   const data1 = [
     {
-      name: "Page A",
-      uv: 4000,
-      pv: 2400,
-      amt: 2400,
+      name: "5k",
+      uv: 10,
+      pv: 4,
+      amt: 24,
     },
     {
-      name: "Page B",
-      uv: 3000,
-      pv: 1398,
-      amt: 2210,
+      name: "10k",
+      uv: 30,
+      pv: 63,
+      amt: 22,
     },
     {
-      name: "Page C",
-      uv: 2000,
-      pv: 9800,
-      amt: 2290,
+      name: "15k",
+      uv: 20,
+      pv: 98,
+      amt: 22,
     },
     {
-      name: "Page D",
-      uv: 2780,
-      pv: 3908,
-      amt: 2000,
+      name: "20k",
+      uv: 37,
+      pv: 19,
+      amt: 20,
     },
     {
-      name: "Page E",
-      uv: 1890,
-      pv: 4800,
-      amt: 2181,
+      name: "25k",
+      uv: 28,
+      pv: 38,
+      amt: 21,
     },
     {
-      name: "Page F",
-      uv: 2390,
-      pv: 3800,
-      amt: 2500,
+      name: "30k",
+      uv: 3,
+      pv: 48,
+      amt: 25,
     },
     {
-      name: "Page G",
-      uv: 3490,
-      pv: 4300,
-      amt: 2100,
+      name: "35k",
+      uv: 54,
+      pv: 43,
+      amt: 21,
     },
   ];
 
   const data2 = [
     {
-      name: "Page A",
-      uv: 4000,
-      pv: 2400,
-      amt: 2400,
+      name: "JAN",
+      uv: 40,
+      pv: 24,
+      amt: 24,
     },
     {
-      name: "Page B",
-      uv: 3000,
-      pv: 1398,
-      amt: 2210,
+      name: "FEB",
+      uv: 30,
+      pv: 13,
+      amt: 22,
     },
     {
-      name: "Page C",
-      uv: 2000,
-      pv: 9800,
-      amt: 2290,
+      name: "MAR",
+      uv: 20,
+      pv: 98,
+      amt: 22,
     },
     {
-      name: "Page D",
-      uv: 2780,
-      pv: 3908,
-      amt: 2000,
+      name: "APR",
+      uv: 27,
+      pv: 39,
+      amt: 20,
     },
     {
-      name: "Page E",
-      uv: 1890,
-      pv: 4800,
-      amt: 2181,
+      name: "MAY",
+      uv: 18,
+      pv: 48,
+      amt: 21,
     },
     {
-      name: "Page F",
-      uv: 2390,
-      pv: 3800,
-      amt: 2500,
+      name: "JUN",
+      uv: 23,
+      pv: 38,
+      amt: 25,
     },
     {
-      name: "Page G",
-      uv: 3490,
-      pv: 4300,
-      amt: 2100,
+      name: "JUL",
+      uv: 34,
+      pv: 43,
+      amt: 21,
     },
   ];
   const data4 = [
@@ -292,6 +321,34 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
     },
   ];
 
+  const data5 = [
+    {
+      name: 2021,
+      uv: 20,
+      pv: 0,
+      amt: 2400,
+    },
+    {
+      name: 2022,
+      uv: 80,
+      pv: 60,
+      amt: 2210,
+    },
+    {
+      name: 2023,
+      uv: 50,
+      pv: 30,
+      amt: 2290,
+    },
+    {
+      name: 2024,
+      uv: 110,
+      pv: 90,
+      amt: 2290,
+    },
+    
+  ];
+
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [screenheight, setScreenHeight] = useState(window.innerHeight);
 
@@ -313,6 +370,7 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
   return (
     <div className={`w-full h-full bg-gray-200`}>
       {screenWidth >= 1535 && (
@@ -846,7 +904,7 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
         }`}
       >
         <div className={`h-full ${screenWidth < 1180 ? "w-full" : "w-1/2"}`}>
-          <div className={`w-full h-2/5  py-2 px-3`}>
+          <div className={`w-full h-2/6  py-2 px-3`}>
             <Card
               color="transparent"
               shadow={true}
@@ -872,20 +930,20 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                       bottom: 5,
                     }}
                   >
-                    <CartesianGrid horizontal={true} vertical={false} />
+                    
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />
 
                     <ReferenceLine y={0} stroke="#000" />
-                    <Bar dataKey="pv" fill="#8884d8" />
-                    <Bar dataKey="uv" fill="#82ca9d" />
+                    <Bar dataKey="pv" fill="#435fe2" shape={<CustomBar />}/>
+                    <Bar dataKey="uv" fill="#e28743" shape={<CustomBar1 />}/>
                   </BarChart>
                 </ResponsiveContainer>
               </div>
             </Card>
           </div>
-          <div className={`w-full h-2/5 bg-gray-200 py-2 px-3`}>
+          <div className={`w-full h-2/6 bg-gray-200 py-2 px-3`}>
             <Card
               color="transparent"
               shadow={true}
@@ -902,7 +960,7 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart
                     width={500}
-                    height={400}
+                    height={300}
                     data={data1}
                     margin={{
                       top: 10,
@@ -919,68 +977,74 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                       type="monotone"
                       dataKey="uv"
                       stackId="1"
-                      stroke="#8884d8"
-                      fill="#8884d8"
+                      stroke="#e29743"
+                      fill="#e29743"
+                      strokeWidth={0}
                     />
                     <Area
                       type="monotone"
                       dataKey="pv"
                       stackId="1"
-                      stroke="#82ca9d"
-                      fill="#82ca9d"
-                    />
-                    <Area
-                      type="monotone"
-                      dataKey="amt"
-                      stackId="1"
-                      stroke="#ffc658"
-                      fill="#ffc658"
+                      stroke="#efa1f1"
+                      fill="#efa1f1"
+                      strokeWidth={0}
                     />
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
             </Card>
           </div>
-          <div className={`w-full h-1/5  flex flex-row gap-4 px-3 py-2`}>
-            <div className={`w-1/2 h-full`}>
-              <Card className="bg-white w-full h-full flex flex-col p-4">
+          <div className={`w-full h-2/6  flex flex-row gap-4 px-3 py-2 justify-center`}>
+            <div className={`w-2/3 h-full`}>
+              <Card className="bg-white w-full h-full flex flex-col p-2">
                 <div className="h-1/4 flex flex-row justify-between items-center">
-                  <Typography variant="h6" color="black" className="text-start font-poppins">
-                    Pain Score
+                  <Typography variant="h6" color="black" className="text-start text-sm font-poppins">
+                    ROM
                   </Typography>
-                  <Typography variant="h7" color="black" className="text-start font-poppins">
+                  <Typography variant="h7" color="black" className="text-start text-sm font-poppins">
                     Left Leg
                   </Typography>
                 </div>
                 <div className="flex flex-col justify-center items-center h-3/4">
-                  <Typography
-                    variant="h3"
-                    color="black"
-                    className="text-start mt-[-2rem] font-poppins"
-                  >
-                    33
-                  </Typography>
+                <CircularProgressbar
+                        value={75}
+                        text={75}
+                        circleRatio={0.75}
+                        styles={buildStyles({
+                          rotation: 1 / 2 + 1 / 8,
+                          trailColor: "#eee",
+                          pathColor: "red",
+                          textColor: "black",
+                          textSize: "22px",
+                        })}
+                      />
                 </div>
               </Card>
             </div>
-            <div className={`w-1/2 h-full`}>
-              <Card className="bg-white w-full h-full flex flex-col p-4">
+            
+            <div className={`w-2/3 h-full`}>
+              <Card className="bg-white w-full h-full flex flex-col p-2">
                 <div className="h-1/4 flex flex-row justify-between items-center">
-                  <Typography variant="h6" color="black" className="text-start font-poppins">
-                    Pain Score
+                  <Typography variant="h6" color="black" className="text-start text-sm font-poppins">
+                    ROM
                   </Typography>
-                  <Typography variant="h7" color="black" className="text-start font-poppins">
+                  <Typography variant="h7" color="black" className="text-start text-sm font-poppins">
                     Right Leg
                   </Typography>
                 </div>
                 <div className="flex flex-col justify-center items-center h-3/4">
-                  <Typography
-                    variant="h3"
-                    color="black"
-                    className="text-start mt-[-2rem] font-poppins"
-                  >
-                    33
-                  </Typography>
+                <CircularProgressbar
+                        value={64}
+                        text={64}
+                        circleRatio={0.75}
+                        styles={buildStyles({
+                          rotation: 1 / 2 + 1 / 8,
+                          trailColor: "#eee",
+                          pathColor: "cyan",
+                          textColor: "black",
+                          textSize: "22px",
+                        })}
+                      />
                 </div>
               </Card>
             </div>
@@ -998,47 +1062,75 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
               shadow={true}
               className="w-full h-full bg-white flex flex-col gap-2 pt-2"
             >
-              <div className="w-full flex flex-col">
+              <div className={`w-full flex flex-row`}>
+              <div className="w-1/2 flex flex-col">
                 <Typography
-                  variant="h6"
-                  color="black"
-                  className="flex text-start px-5 font-poppins"
+                  variant="h7"
+                  color="gray"
+                  className="flex text-start px-5 font-normal font-poppins"
                 >
                   Sugar Level
                 </Typography>
                 <Typography
-                  variant="h7"
+                  variant="h5"
                   color="black"
                   className="flex text-start px-5 font-poppins"
                 >
                   220 mg/dl
                 </Typography>
               </div>
+              <div className="w-1/2 flex flex-col items-end">
+                <Typography
+                  variant="h6"
+                  color="black"
+                  className="flex text-start px-5 font-semibold font-poppins"
+                >
+                  25%
+                </Typography>
+                <Typography
+                  variant="h6"
+                  color="gray"
+                  className="flex text-start px-5 font-poppins"
+                >
+                  VS LAST MONTH
+                </Typography>
+              </div>
+            </div>
               <div className="w-full h-full">
-                <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart
-                    width={500}
-                    height={400}
-                    data={data2}
-                    margin={{
-                      top: 10,
-                      right: 30,
-                      left: 0,
-                      bottom: 0,
-                    }}
-                  >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Area
-                      type="monotone"
-                      dataKey="uv"
-                      stroke="#8884d8"
-                      fill="#8884d8"
-                    />
-                  </AreaChart>
-                </ResponsiveContainer>
+              <ResponsiveContainer width="100%" height="100%">
+                <AreaChart
+                  width={500}
+                  height={400}
+                  data={data2}
+                  margin={{
+                    top: 10,
+                    right: 30,
+                    left: 0,
+                    bottom: 0,
+                  }}
+                >
+                  <defs>
+                    <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor="red" stopOpacity={0.5} />
+                      <stop
+                        offset="95%"
+                        stopColor="transparent"
+                        stopOpacity={0}
+                      />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid strokeDasharray={'10 5'}/>
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Area
+                    dataKey="uv"
+                    stroke="red"
+                    strokeWidth={2}
+                    fill="url(#colorUv)"
+                  />
+                </AreaChart>
+              </ResponsiveContainer>
               </div>
             </Card>
           </div>
@@ -1056,33 +1148,36 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                 Patient Analytics
               </Typography>
               <div className="w-full h-full">
-                <ResponsiveContainer width="100%" height="100%">
-                  <LineChart
-                    width={500}
-                    height={300}
-                    data={combinedChartData}
-                    margin={{
-                      top: 5,
-                      right: 30,
-                      left: 0,
-                      bottom: 5,
-                    }}
-                  >
-                    <XAxis dataKey="name" />
-                    <YAxis />
-                    <Tooltip />
-                    <Line type="monotone" dataKey="Running" stroke="#82ca9d" />
-                    <Line type="monotone" dataKey="Squats" stroke="#8884d8" />
-                    <Line type="monotone" dataKey="Pushups" stroke="#ff7300" />
-                    <Line type="monotone" dataKey="Pullups" stroke="#0088aa" />
-                    <Line
-                      type="monotone"
-                      dataKey="LegHipRotation"
-                      stroke="#FF0000"
-                    />
-                    {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
-                  </LineChart>
-                </ResponsiveContainer>
+              <ResponsiveContainer width="100%" height="100%">
+                      <LineChart
+                        width={700}
+                        height={700}
+                        data={data5}
+                        margin={{
+                          top: 10,
+                          right: 30,
+                          left: -10,
+                          bottom: 0,
+                        }}
+                      >
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Tooltip />
+                        <Line
+                          type="monotone"
+                          dataKey="pv"
+                          stroke="#8884d8"
+                          strokeWidth={4}
+                          strokeDasharray={"25 4"}
+                        />
+                        <Line
+                          type="monotone"
+                          dataKey="uv"
+                          stroke="#82ca9d"
+                          strokeWidth={4}
+                        />
+                      </LineChart>
+                    </ResponsiveContainer>
               </div>
             </Card>
           </div>
