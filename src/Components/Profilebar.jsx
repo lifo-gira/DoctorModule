@@ -293,47 +293,30 @@ const Profilebar = ({onRegimeClick, handleVideoClick,patlis}) => {
 
   const data = [
     {
-      name: "Page A",
-      uv: 4000,
-      pv: 2400,
+      name: 2022,
+      uv: 20,
+      pv: 0,
       amt: 2400,
     },
     {
-      name: "Page B",
-      uv: 3000,
-      pv: 1398,
+      name: null,
+      uv: 80,
+      pv: 60,
       amt: 2210,
     },
     {
-      name: "Page C",
-      uv: 2000,
-      pv: 9800,
+      name: "2023",
+      uv: 50,
+      pv: 30,
       amt: 2290,
     },
     {
-      name: "Page D",
-      uv: 2780,
-      pv: 3908,
-      amt: 2000,
+      name: null,
+      uv: 110,
+      pv: 90,
+      amt: 2290,
     },
-    {
-      name: "Page E",
-      uv: 1890,
-      pv: 4800,
-      amt: 2181,
-    },
-    {
-      name: "Page F",
-      uv: 2390,
-      pv: 3800,
-      amt: 2500,
-    },
-    {
-      name: "Page G",
-      uv: 3490,
-      pv: 4300,
-      amt: 2100,
-    },
+    
   ];
 
   const data1 = [
@@ -450,46 +433,41 @@ const Profilebar = ({onRegimeClick, handleVideoClick,patlis}) => {
                 />
               </div>
               <div>
-                <Typography variant="h5" color="blue-gray">
+                <Typography variant="h5" color="blue-gray" className="font-poppins">
                   Anirudh P Menon
                 </Typography>
-                <Typography variant="h7" color="blue-gray">
+                <Typography variant="h7" color="blue-gray" className="font-poppins">
                   Cardialogist
                 </Typography>
               </div>
             </div>
             <List
               className={` bg-white ${
-                screenWidth < 1535 ? "" : " w-full pl-8 pr-4"
+                screenWidth < 1535 ? "" : " w-full pl-8 pr-0"
               }`}
             >
               <ListItem
-                className={`${
+                className={`rounded-none ${
                   screenWidth < 1535 ? "w-2/3 px-4" : " w-full p-3"
-                }`}
+                } ${activeMenuItem === "Dashboard" && activeMenuItem != "Report"
+                ? "bg-gradient-to-r from-white to-cyan-200"
+                : "transparent"}`}
                 selected={open === 1}
                 onClick={() => handleItemClick(1)}
-                style={{
-                  backgroundColor:
-                  activeMenuItem === "Dashboard" && activeMenuItem != "Report"
-                      ? "cyan"
-                      : "transparent",
-                }}
               >
                 <ListItemPrefix>
                   <Squares2X2Icon className="h-5 w-5" />
                 </ListItemPrefix>
-                <Typography color="blue-gray" className="mr-auto font-normal">
+                <Typography color="blue-gray" className="mr-auto font-normal font-poppins">
                   Dashboard
                 </Typography>
               </ListItem>
               <ListItem
-                className={`${
+                className={`rounded-none font-poppins ${
                   screenWidth < 1535 ? "w-2/3 px-4" : " w-full p-3"
-                }`}
+                } ${activeMenuItem === "Patient List" ? "bg-gradient-to-r from-white to-cyan-200" : "transparent"}`}
                 selected={open === 2}
                 onClick={() => handleItemClick(2)}
-                style={{ backgroundColor: activeMenuItem === "Patient List" ? "cyan" : "transparent" }}
               >
                 <ListItemPrefix>
                   <UsersIcon className="h-5 w-5" />
@@ -497,12 +475,11 @@ const Profilebar = ({onRegimeClick, handleVideoClick,patlis}) => {
                 Patient List
               </ListItem>
               <ListItem
-                className={`${
+                className={`rounded-none font-poppins ${
                   screenWidth < 1535 ? "w-2/3 px-4" : " w-full p-3"
-                }`}
+                } ${activeMenuItem === "Analysis" ? "bg-gradient-to-r from-white to-cyan-200" : "transparent"} `}
                 selected={open === 3}
                 onClick={() => handleItemClick(3)}
-                style={{ backgroundColor: activeMenuItem === "Analysis" ? "cyan" : "transparent" }}
               >
                 <ListItemPrefix>
                   <ChartBarIcon className="h-5 w-5" />
@@ -510,12 +487,11 @@ const Profilebar = ({onRegimeClick, handleVideoClick,patlis}) => {
                 Analysis
               </ListItem>
               <ListItem
-                className={`${
+                className={`rounded-none font-poppins ${
                   screenWidth < 1535 ? "w-2/3 px-4" : " w-full p-3"
-                }`}
+                } ${activeMenuItem === "Schedule" ? "bg-gradient-to-r from-white to-cyan-200" : "transparent" }`}
                 selected={open === 4}
                 onClick={() => handleItemClick(4)}
-                style={{ backgroundColor: activeMenuItem === "Schedule" ? "cyan" : "transparent" }}
               >
                 <ListItemPrefix>
                   <CalendarDaysIcon className="h-5 w-5" />
@@ -524,7 +500,7 @@ const Profilebar = ({onRegimeClick, handleVideoClick,patlis}) => {
               </ListItem>
               <hr className="my-5 border-blue-gray-50 w-full" />
               <ListItem
-                className={`${
+                className={`rounded-none font-poppins ${
                   screenWidth < 1535 ? "w-2/3 px-4" : " w-full p-3"
                 }`}
               >
@@ -534,7 +510,7 @@ const Profilebar = ({onRegimeClick, handleVideoClick,patlis}) => {
                 Settings
               </ListItem>
               <ListItem
-                className={`${
+                className={`rounded-none font-poppins ${
                   screenWidth < 1535 ? "w-2/3 px-4" : " w-full p-3"
                 }`}
               >
@@ -693,7 +669,8 @@ const Profilebar = ({onRegimeClick, handleVideoClick,patlis}) => {
           screenWidth < 1535 ? "w-full" : "w-5/6"
         }`}
       >
-          {activeMenuItem!="Report" &&
+        {/* activeMenuItem!="Report" */}
+          {false &&
           <div
             className={`w-full h-20 bg-gradient-to-b from-blue-gray-500 to-gray-600 flex flex-row items-center  ${
               screenWidth < 460 ? "pl-4 gap-4" : "pl-12 gap-8"
@@ -796,11 +773,13 @@ const Profilebar = ({onRegimeClick, handleVideoClick,patlis}) => {
             </div>
           </div>
 }
-        <div className={`w-full ${screenWidth<1200 || activeMenuItem === "Report"?"h-full":"h-5/6 mt-auto"}`}>
-          {(activeMenuItem === "Dashboard" && patlis === 'false') && <Dashboard patientdata={patients} doctordata={doctordata} handlePhoneIconClick={handleVideoClick} onEventSelect={handleEventSelect} onReportClick={(userId) => handleMenuItemClick("Report", userId)} />}
+        <div className={`w-full h-full ${screenWidth<1200 || activeMenuItem === "Report"?"h-full":"h-5/6 mt-auto"}`}>
+          {/* {(activeMenuItem === "Dashboard" && patlis === 'false') && <Dashboard patientdata={patients} doctordata={doctordata} handlePhoneIconClick={handleVideoClick} onEventSelect={handleEventSelect} onReportClick={(userId) => handleMenuItemClick("Report", userId)} />}
           {(activeMenuItem === "Patient List" || patlis === 'true') && <Patientlist patientdata={patients} handlePhoneIconClick={handleVideoClick} data={data} data1={data1} event={selectedEvent} onReportClick={(userId) => handleMenuItemClick("Report", userId)}/>}
-          {(activeMenuItem === "Report" && patlis === 'false') &&(<Report userId={userID} onDashboard={()=> handleMenuItemClick("Dashboard")}  onRegimeClick={(patientId) => onRegimeClick(patientId)}   />)}
+          {(activeMenuItem === "Report" && patlis === 'false') &&(<Report userId={userID} onDashboard={()=> handleMenuItemClick("Dashboard")}  onRegimeClick={(patientId) => onRegimeClick(patientId)}   />)} */}
+          <Report/>
         </div>
+        
       </div>
     </div>
   );

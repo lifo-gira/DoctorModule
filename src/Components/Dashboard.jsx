@@ -22,6 +22,7 @@ import {
   ChevronRightIcon,
   ArrowUpRightIcon,
   UserCircleIcon,
+  ChevronDownIcon,
 } from "@heroicons/react/24/solid";
 import {
   RadialBarChart,
@@ -40,7 +41,12 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "moment/locale/en-gb";
 
-const Dashboard = ({onReportClick, patientdata, doctordata, onEventSelect,}) => {
+const Dashboard = ({
+  onReportClick,
+  patientdata,
+  doctordata,
+  onEventSelect,
+}) => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [screenheight, setScreenHeight] = useState(window.innerHeight);
 
@@ -71,53 +77,63 @@ const Dashboard = ({onReportClick, patientdata, doctordata, onEventSelect,}) => 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8000/patient-details/all");
+        const response = await fetch(
+          "http://127.0.0.1:8000/patient-details/all"
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
         const data = await response.json();
-        
+
         // Convert schedule_start_date to Date objects for each patient
-        const processedData = data.map(patient => {
+        const processedData = data.map((patient) => {
           const startDateString = patient.health_tracker.schedule_start_date;
           const dateTimeParts = startDateString
             .replace(/[()]/g, "")
             .split(",")
-            .map(part => parseInt(part.trim()));
-          
-          const startDate = new Date(dateTimeParts[0], dateTimeParts[1] - 1, dateTimeParts[2], dateTimeParts[3], dateTimeParts[4]);
-          console.log(startDate,"startdate")
+            .map((part) => parseInt(part.trim()));
+
+          const startDate = new Date(
+            dateTimeParts[0],
+            dateTimeParts[1] - 1,
+            dateTimeParts[2],
+            dateTimeParts[3],
+            dateTimeParts[4]
+          );
+          console.log(startDate, "startdate");
           return {
             ...patient,
             title: "Meeting", // Add the title "Meeting" to each item
             health_tracker: {
               ...patient.health_tracker,
-              schedule_start_date: startDate
-            }
+              schedule_start_date: startDate,
+            },
           };
         });
-  
+
         setPatients(processedData);
         setLoading(false);
-  
+
         // Count occurrences of flag == -1 and flag == 0
-        const minusOneCount = processedData.filter(patient => patient.flag === -1).length;
-        const zeroCount = processedData.filter(patient => patient.flag === 0).length;
-  
+        const minusOneCount = processedData.filter(
+          (patient) => patient.flag === -1
+        ).length;
+        const zeroCount = processedData.filter(
+          (patient) => patient.flag === 0
+        ).length;
+
         setFlagMinusOneCount(minusOneCount);
         setFlagZeroCount(zeroCount);
-  
+
         console.log("Processed patient data:", processedData); // Log fetched and processed data
       } catch (error) {
         console.error("Error fetching patient information:", error);
         setLoading(true);
       }
     };
-  
+
     fetchData();
   }, []);
-  
-
 
   const localizer = momentLocalizer(moment);
 
@@ -182,13 +198,21 @@ const Dashboard = ({onReportClick, patientdata, doctordata, onEventSelect,}) => 
                   : "h-1/6 flex flex-row justify-between px-8"
               }`}
             >
-              <Typography variant="h4" color="blue-gray">
+              <Typography
+                variant="h4"
+                color="blue-gray"
+                className={`font-poppins`}
+              >
                 Patients Assigned
               </Typography>
               <div
                 className={`flex flex-row justify-between gap-2 items-center cursor-pointer`}
               >
-                <Typography variant="h5" color="cyan">
+                <Typography
+                  variant="h5"
+                  color="cyan"
+                  className={`font-poppins`}
+                >
                   View all
                 </Typography>
                 <ChevronRightIcon className="w-4 h-4" />
@@ -217,11 +241,18 @@ const Dashboard = ({onReportClick, patientdata, doctordata, onEventSelect,}) => 
                         />
                         <div className="flex w-full flex-col">
                           <div className="flex items-center justify-between">
-                            <Typography variant="h5" color="blue-gray">
+                            <Typography
+                              variant="h5"
+                              color="blue-gray"
+                              className={`font-poppins`}
+                            >
                               {item.user_id}
                             </Typography>
                           </div>
-                          <Typography color="blue-gray" className="text-start">
+                          <Typography
+                            color="blue-gray"
+                            className="text-start font-poppins"
+                          >
                             25,{item.PersonalDetails.PatientDetails.Gender}
                           </Typography>
                         </div>
@@ -511,20 +542,28 @@ const Dashboard = ({onReportClick, patientdata, doctordata, onEventSelect,}) => 
             screenWidth < 1200 ? "w-full" : "w-2/5"
           }`}
         >
-          <div className={`w-full h-1/2 `}>
+          <div className={`w-full h-2/5 `}>
             <div
               className={` w-full flex flex-col ${
                 screenWidth < 1180 ? "h-2/3" : "h-full px-4 py-1"
               }`}
             >
               <div
-                className={`h-1/6 w-full  flex items-center py-3 ${
-                  screenWidth < 1180 ? "justify-center" : ""
+                className={`h-1/6 w-full  flex flex-row items-center py-4 ${
+                  screenWidth < 1180 ? "justify-center" : "justify-between"
                 }`}
               >
-                <Typography variant="h5" color="black" className="text-start">
+                <Typography
+                  variant="h5"
+                  color="black"
+                  className="text-start font-poppins w-2/3"
+                >
                   Patients
                 </Typography>
+                <div className={`flex flex-row font-poppins items-center gap-2 text-sm bg-gray-50 rounded-lg py-1 px-2`}>
+                  2024
+                  <ChevronDownIcon color="gray" className={`w-3 h-3`}/>
+                </div>
               </div>
 
               <div
@@ -539,13 +578,13 @@ const Dashboard = ({onReportClick, patientdata, doctordata, onEventSelect,}) => 
                 <Card
                   color="transparent"
                   shadow={true}
-                  className={` bg-gradient-to-br from-light-blue-100 to-white flex flex-col justify-center items-center my-1 py-1 w-full`}
+                  className={` bg-gradient-to-br from-light-blue-50 via-light-blue-50 to-white flex flex-col justify-center items-center my-1 py-1 w-full`}
                 >
-                  <div className="w-full h-1/4 font-semibold text-black text-lg">
+                  <div className="w-full h-1/4 font-semibold text-black text-lg font-poppins">
                     Patients Completed
                   </div>
                   <div className="w-full h-3/4 flex flex-row items-center">
-                    <div className="w-1/2 text-5xl text-black font-bold">
+                    <div className="w-1/2 text-5xl text-black font-semibold font-poppins">
                       37
                     </div>
                     <div className="w-1/2 flex justify-center">
@@ -556,13 +595,13 @@ const Dashboard = ({onReportClick, patientdata, doctordata, onEventSelect,}) => 
                 <Card
                   color="transparent"
                   shadow={true}
-                  className={`bg-gradient-to-br from-red-100 to-white flex flex-col justify-center items-center my-1 py-1 w-full`}
+                  className={`bg-gradient-to-br from-red-100 via-red-50 to-white flex flex-col justify-center items-center my-1 py-1 w-full`}
                 >
-                  <div className="w-full h-1/4 font-semibold text-black text-lg">
+                  <div className="w-full h-1/4 font-semibold text-black text-lg font-poppins">
                     Patients Assigned
                   </div>
                   <div className="w-full h-3/4 flex flex-row items-center">
-                    <div className="w-1/2 text-5xl text-black font-bold">
+                    <div className="w-1/2 text-5xl text-black font-semibold font-poppins">
                       29
                     </div>
                     <div className="w-1/2 flex justify-center">
@@ -573,24 +612,28 @@ const Dashboard = ({onReportClick, patientdata, doctordata, onEventSelect,}) => 
               </div>
             </div>
           </div>
-          <div className={`w-full h-1/2 px-4 `}>
+          <div className={`w-full h-3/5 px-4 pt-4`}>
             <div className={`h-full w-full   flex flex-col`}>
               <div
                 className={`w-full h-1/6  text-start flex items-center ${
                   screenWidth < 1180 ? "py-8 justify-center" : "py-3"
                 }`}
               >
-                <Typography variant="h5" color="black" className="text-start">
+                <Typography
+                  variant="h5"
+                  color="black"
+                  className="text-start font-poppins"
+                >
                   Exercises Assigned
                 </Typography>
               </div>
-              <div className="w-full h-5/6 py-1 gap-4 flex flex-row overflow-x-auto scrollbar-thin scrollbar-thumb-blue-400 scrollbar-track-transparent scrollbar-thumb-rounded-2xl">
+              <div className="w-full h-5/6 py-1 gap-4 flex flex-row overflow-x-auto scrollbar-thin scrollbar-thumb-cyan-100 scrollbar-track-transparent scrollbar-thumb-rounded-2xl">
                 {doctordata.map((item, index) => (
-                  <Card
-                    className={`w-full h-full flex flex-col items-center justify-center py-3 px-4 gap-4 ${
+                  <div
+                    className={`w-full h-full flex flex-col items-center justify-center py-3 px-4 gap-4 rounded-xl ${
                       item.risk
-                        ? "bg-gradient-to-br from-red-100 to-white"
-                        : "bg-gradient-to-br from-light-blue-100 to-white"
+                        ? "bg-gradient-to-br from-white via-red-50 to-white border-solid border-2 border-red-600"
+                        : "bg-gradient-to-br from-white via-blue-50 to-white border-solid border-2 border-cyan-300"
                     } `}
                     key={index}
                   >
@@ -600,22 +643,35 @@ const Dashboard = ({onReportClick, patientdata, doctordata, onEventSelect,}) => 
                         variant="circular"
                         src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
                         alt="tania andrew"
+                        className={`${
+                          item.risk
+                            ? "shadow-red-300 shadow-md"
+                            : "shadow-cyan-300 shadow-md"
+                        }`}
                       />
                     </div>
                     <div className="h-2/3 w-full flex flex-col  justify-center">
-                      <Typography variant="h6" color="blue-gray">
+                      <Typography
+                        variant="h6"
+                        color="blue-gray"
+                        className="font-poppins"
+                      >
                         {item.name}
                       </Typography>
                       <div
-                        className={`w-full flex flex-row justify-center items-center`}
+                        className={`w-full flex flex-row justify-center items-center font-poppins`}
                       >
                         ID:
-                        <Typography variant="h7" color="black">
+                        <Typography
+                          variant="h7"
+                          color="black"
+                          className="font-poppins"
+                        >
                           {item.profession}
                         </Typography>
                       </div>
                     </div>
-                  </Card>
+                  </div>
                 ))}
               </div>
             </div>
@@ -628,20 +684,28 @@ const Dashboard = ({onReportClick, patientdata, doctordata, onEventSelect,}) => 
         } `}
       >
         <div className={`w-full h-1/6 flex items-center px-6`}>
-          <Typography variant="h4" color="black" className="text-start">
+          <Typography
+            variant="h4"
+            color="black"
+            className="text-start font-poppins"
+          >
             My Schedule
           </Typography>
         </div>
-        <div className="container w-full h-full mx-auto p-2 bg-white rounded-lg overflow-y-auto scrollbar-thin scrollbar-thumb-blue-400 scrollbar-track-transparent">
+        <div className="container w-full h-full mx-auto p-2 bg-white rounded-lg overflow-y-auto scrollbar-thin scrollbar-thumb-cyan-100 scrollbar-track-transparent">
           <div className="h-full w-full">
-          <Calendar
-  localizer={localizer}
-  events={patients}
-  startAccessor={event => new Date(event.health_tracker.schedule_start_date)}
-  endAccessor={event => new Date(event.health_tracker.schedule_start_date)}
-  style={{ height: 500 }}
-  onSelectEvent={handleSelectEvent}
-/>
+            <Calendar
+              localizer={localizer}
+              events={patients}
+              startAccessor={(event) =>
+                new Date(event.health_tracker.schedule_start_date)
+              }
+              endAccessor={(event) =>
+                new Date(event.health_tracker.schedule_start_date)
+              }
+              style={{ height: 500, fontFamily: "Poppins" }}
+              onSelectEvent={handleSelectEvent}
+            />
           </div>
         </div>
       </div>

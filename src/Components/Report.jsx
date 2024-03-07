@@ -333,21 +333,21 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
               <div
                 className={`w-2/3 h-full  text-start flex flex-col justify-center`}
               >
-                <Typography variant="h5" color="white">
+                <Typography variant="h5" color="white" className="font-poppins">
                 {patients.user_id}
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium">
+                <Typography variant="h7" color="white" className="font-medium font-poppins">
                 32 , {patientDetails.Gender}
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium">
+                <Typography variant="h7" color="white" className="font-medium font-poppins">
                   ID: 123456
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium">
+                <Typography variant="h7" color="white" className="font-medium font-poppins">
                 {report.map((report, index) => (
                     <div key={index}>
                       {report && (
                         <div>
-                          <span>Diagnosis {index + 1}: </span>
+                          <span className="font-poppins">Diagnosis {index + 1}: </span>
                           <span>{report}</span>
                         </div>
                       )}
@@ -362,10 +362,10 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
               <div
                 className={`w-3/4 h-full  flex flex-col text-end justify-center`}
               >
-                <Typography variant="h4" color="white">
+                <Typography variant="h4" color="white" className="font-poppins">
                 {patients.doctor_assigned}
                 </Typography>
-                <Typography variant="h6" color="white" className="font-medium">
+                <Typography variant="h6" color="white" className="font-medium font-poppins">
                   Cardialogist
                 </Typography>
               </div>
@@ -382,7 +382,7 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
 
             <div className={`w-5/6 h-1/3  flex ml-auto`}>
               <div className={`w-3/4 flex ml-auto justify-end items-center`} onClick={() => onRegimeClick(patients.patient_id)}>
-                <Button className="flex items-center gap-2">
+                <Button className="flex items-center gap-2 font-poppins">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -422,16 +422,16 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
               <div
                 className={`w-2/3 h-full  text-start flex flex-col justify-center`}
               >
-                <Typography variant="h5" color="white">
+                <Typography variant="h5" color="white" className="font-poppins">
                 {patients.user_id}
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium">
+                <Typography variant="h7" color="white" className="font-medium font-poppins">
                 32 , {patientDetails.Gender}
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium">
+                <Typography variant="h7" color="white" className="font-medium font-poppins">
                   ID: 123456
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium">
+                <Typography variant="h7" color="white" className="font-medium font-poppins">
                 {report.map((report, index) => (
                     <div key={index}>
                       {report && (
@@ -450,7 +450,7 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
             className={`w-1/5 h-full px-8  flex flex-col items-center justify-center`}
           >
             <ArrowUturnLeftIcon className="w-16 h-16" onClick={onDashboard} />
-            <Typography variant="h5" color="white" onClick={onDashboard}>
+            <Typography variant="h5" color="white" onClick={onDashboard} className="font-poppins">
               Back to Dashboard
             </Typography>
           </div>
@@ -459,10 +459,10 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
               <div
                 className={`w-3/4 h-full  flex flex-col text-end justify-center`}
               >
-                <Typography variant="h4" color="white">
+                <Typography variant="h4" color="white" className="font-poppins">
                   {patients.doctor_assigned}
                 </Typography>
-                <Typography variant="h6" color="white" className="font-medium">
+                <Typography variant="h6" color="white" className="font-medium font-poppins">
                   Cardialogist
                 </Typography>
               </div>
@@ -481,7 +481,7 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
               <div className={`w-3/4 flex ml-auto justify-center items-center`}>
                 <div className={`w-3/4 flex ml-auto justify-end items-center`}
                 onClick={() => onRegimeClick(patients.patient_id)}>
-                  <Button className="flex items-center gap-2">
+                  <Button className="flex items-center gap-2 font-poppins">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -512,7 +512,7 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
             className={`w-full h-1/6 px-8  flex flex-col items-center justify-center`}
           >
             <ArrowUturnLeftIcon className="w-16 h-16" onClick={onDashboard} />
-            <Typography variant="h5" color="white" onClick={onDashboard}>
+            <Typography variant="h5" color="white" onClick={onDashboard} className="font-poppins">
               Back to Dashboard
             </Typography>
           </div>
@@ -533,33 +533,33 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                 <div
                   className={`w-2/3 h-full  text-start flex flex-col justify-center`}
                 >
-                  <Typography variant="h5" color="white">
+                  <Typography variant="h5" color="white" className="font-poppins">
                   {patients.user_id}
                   </Typography>
                   <Typography
                     variant="h7"
                     color="white"
-                    className="font-medium"
+                    className="font-medium font-poppins"
                   >
                     32 , {patientDetails.Gender}
                   </Typography>
                   <Typography
                     variant="h7"
                     color="white"
-                    className="font-medium"
+                    className="font-medium font-poppins"
                   >
                     ID: 123456
                   </Typography>
                   <Typography
                     variant="h7"
                     color="white"
-                    className="font-medium"
+                    className="font-medium font-poppins"
                   >
                     {report.map((report, index) => (
                     <div key={index}>
                       {report && (
                         <div>
-                          <span>Diagnosis {index + 1}: </span>
+                          <span className="font-poppins">Diagnosis {index + 1}: </span>
                           <span>{report}</span>
                         </div>
                       )}
@@ -575,13 +575,13 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                 <div
                   className={`w-3/4 h-full  flex flex-col text-end justify-center`}
                 >
-                  <Typography variant="h4" color="white">
+                  <Typography variant="h4" color="white" className="font-poppins">
                   {patients.doctor_assigned}
                   </Typography>
                   <Typography
                     variant="h6"
                     color="white"
-                    className="font-medium"
+                    className="font-medium font-poppins"
                   >
                     Cardialogist
                   </Typography>
@@ -607,7 +607,7 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                     className={`w-3/4 flex ml-auto justify-end items-center`}
                     onClick={() => onRegimeClick(patients.patient_id)}
                   >
-                    <Button className="flex items-center gap-2">
+                    <Button className="flex items-center gap-2 font-poppins">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -639,7 +639,7 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
             className={`w-full h-1/5 px-8  flex flex-col items-end justify-center`}
           >
             <ArrowUturnLeftIcon className="w-16 h-16" onClick={onDashboard} />
-            <Typography variant="h5" color="white" onClick={onDashboard}>
+            <Typography variant="h5" color="white" onClick={onDashboard} className="font-poppins">
               Back to Dashboard
             </Typography>
           </div>
@@ -657,21 +657,21 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
               <div
                 className={`w-2/3 h-full  text-start flex flex-col justify-center`}
               >
-                <Typography variant="h5" color="white">
+                <Typography variant="h5" color="white" className="font-poppins">
                 {patients.user_id}
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium">
+                <Typography variant="h7" color="white" className="font-medium font-poppins">
                 32 , {patientDetails.Gender}
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium">
+                <Typography variant="h7" color="white" className="font-medium font-poppins">
                   ID: 123456
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium">
+                <Typography variant="h7" color="white" className="font-medium font-poppins">
                 {report.map((report, index) => (
                     <div key={index}>
                       {report && (
                         <div>
-                          <span>Diagnosis {index + 1}: </span>
+                          <span className="font-poppins">Diagnosis {index + 1}: </span>
                           <span>{report}</span>
                         </div>
                       )}
@@ -687,14 +687,14 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
               <div
                 className={`w-3/4 h-full  flex flex-col text-end justify-center`}
               >
-                <Typography variant="h4" color="white">
+                <Typography variant="h4" color="white" className="font-poppins">
                 {patients.doctor_assigned}
                 </Typography>
-                <Typography variant="h6" color="white" className="font-medium">
+                <Typography variant="h6" color="white" className="font-medium font-poppins">
                   Cardialogist
                 </Typography>
               </div>
-              <div className={`w-1/4 h-full  flex justify-center items-center`}>
+              <div className={`w-1/4 h-full  flex justify-center items-center `}>
                 <Avatar
                   size="xl"
                   alt="avatar"
@@ -708,7 +708,7 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
             <div className={`w-full h-1/3  flex ml-auto`}>
               <div className={`w-3/4 flex ml-auto justify-center items-center`}>
                 <div className={`w-3/4 flex ml-auto justify-end items-center`} onClick={() => onRegimeClick(patients.patient_id)}>
-                  <Button className="flex items-center gap-2">
+                  <Button className="flex items-center gap-2 font-poppins">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
@@ -739,7 +739,7 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
             className={`w-full h-[5rem] px-8  flex flex-col items-center justify-center`}
           >
             <ArrowUturnLeftIcon className="w-12 h-12" onClick={onDashboard} />
-            <Typography variant="h5" color="white" onClick={onDashboard}>
+            <Typography variant="h5" color="white" onClick={onDashboard} className="font-poppins">
               Back to Dashboard
             </Typography>
           </div>
@@ -759,21 +759,21 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
               <div
                 className={`w-full h-full  text-center flex flex-col justify-center`}
               >
-                <Typography variant="h5" color="white">
+                <Typography variant="h5" color="white" className="font-poppins">
                 {patients.user_id}
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium">
+                <Typography variant="h7" color="white" className="font-medium font-poppins">
                 32 , {patientDetails.Gender}
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium">
+                <Typography variant="h7" color="white" className="font-medium font-poppins">
                   ID: 123456
                 </Typography>
-                <Typography variant="h7" color="white" className="font-medium">
+                <Typography variant="h7" color="white" className="font-medium font-poppins">
                 {report.map((report, index) => (
                     <div key={index}>
                       {report && (
                         <div>
-                          <span>Diagnosis {index + 1}: </span>
+                          <span className="font-poppins">Diagnosis {index + 1}: </span>
                           <span>{report}</span>
                         </div>
                       )}
@@ -804,10 +804,10 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
               <div
                 className={`w-full h-full  flex flex-col text-center justify-center`}
               >
-                <Typography variant="h4" color="white">
+                <Typography variant="h4" color="white" className="font-poppins">
                 {patients.doctor_assigned}
                 </Typography>
-                <Typography variant="h6" color="white" className="font-medium">
+                <Typography variant="h6" color="white" className="font-medium font-poppins">
                   Cardialogist
                 </Typography>
               </div>
@@ -815,7 +815,7 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
 
             <div className={`w-full h-1/3 flex justify-center `}>
               <div className={`w-full flex  justify-center items-center`}>
-                <div className={`w-full flex justify-center items-center`}
+                <div className={`w-full flex justify-center items-center font-poppins`}
                 onClick={() => onRegimeClick(patients.patient_id)}>
                   <Button className="flex items-center gap-2">
                     <svg
@@ -855,7 +855,7 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
               <Typography
                 variant="h6"
                 color="black"
-                className="flex text-start px-8"
+                className="flex text-start px-8 font-poppins"
               >
                 Pain Score
               </Typography>
@@ -894,7 +894,7 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
               <Typography
                 variant="h6"
                 color="black"
-                className="flex text-start px-8"
+                className="flex text-start px-8 font-poppins"
               >
                 Pain Score
               </Typography>
@@ -945,10 +945,10 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
             <div className={`w-1/2 h-full`}>
               <Card className="bg-white w-full h-full flex flex-col p-4">
                 <div className="h-1/4 flex flex-row justify-between items-center">
-                  <Typography variant="h6" color="black" className="text-start">
+                  <Typography variant="h6" color="black" className="text-start font-poppins">
                     Pain Score
                   </Typography>
-                  <Typography variant="h7" color="black" className="text-start">
+                  <Typography variant="h7" color="black" className="text-start font-poppins">
                     Left Leg
                   </Typography>
                 </div>
@@ -956,7 +956,7 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                   <Typography
                     variant="h3"
                     color="black"
-                    className="text-start mt-[-2rem] "
+                    className="text-start mt-[-2rem] font-poppins"
                   >
                     33
                   </Typography>
@@ -966,10 +966,10 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
             <div className={`w-1/2 h-full`}>
               <Card className="bg-white w-full h-full flex flex-col p-4">
                 <div className="h-1/4 flex flex-row justify-between items-center">
-                  <Typography variant="h6" color="black" className="text-start">
+                  <Typography variant="h6" color="black" className="text-start font-poppins">
                     Pain Score
                   </Typography>
-                  <Typography variant="h7" color="black" className="text-start">
+                  <Typography variant="h7" color="black" className="text-start font-poppins">
                     Right Leg
                   </Typography>
                 </div>
@@ -977,7 +977,7 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                   <Typography
                     variant="h3"
                     color="black"
-                    className="text-start mt-[-2rem] "
+                    className="text-start mt-[-2rem] font-poppins"
                   >
                     33
                   </Typography>
@@ -1002,14 +1002,14 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                 <Typography
                   variant="h6"
                   color="black"
-                  className="flex text-start px-5"
+                  className="flex text-start px-5 font-poppins"
                 >
                   Sugar Level
                 </Typography>
                 <Typography
                   variant="h7"
                   color="black"
-                  className="flex text-start px-5"
+                  className="flex text-start px-5 font-poppins"
                 >
                   220 mg/dl
                 </Typography>
@@ -1051,7 +1051,7 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
               <Typography
                 variant="h6"
                 color="black"
-                className="flex text-start px-5"
+                className="flex text-start px-5 font-poppins"
               >
                 Patient Analytics
               </Typography>
@@ -1064,15 +1064,13 @@ const Report = ({ onDashboard, userId, onRegimeClick }) => {
                     margin={{
                       top: 5,
                       right: 30,
-                      left: 20,
+                      left: 0,
                       bottom: 5,
                     }}
                   >
-                    <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip />
-                    <Legend />
                     <Line type="monotone" dataKey="Running" stroke="#82ca9d" />
                     <Line type="monotone" dataKey="Squats" stroke="#8884d8" />
                     <Line type="monotone" dataKey="Pushups" stroke="#ff7300" />
