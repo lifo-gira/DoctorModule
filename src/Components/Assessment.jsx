@@ -82,7 +82,7 @@ const renderCustomizedLabel = ({
   );
 };
 
-const Assessment = () => {
+const Assessment = ({ onDashboard, userId,onAssessmentClick}) => {
   const [patientInfo, setPatientInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

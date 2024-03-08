@@ -112,12 +112,13 @@ console.log("start  ",patflag)
           console.warn(res);
           if (res.errorInvitees.length) {
             alert("The user does not exist or is offline.");
-            return;
+            return null;
           }
         })
         .catch((err) => {
           console.error(err);
-          return;
+          // alert("The user does not exist or is offline.");
+          return null;
         });
     } catch (error) {
       console.error(error);
@@ -129,7 +130,7 @@ console.log("start  ",patflag)
   return (
     <>
     <div className="App">
-      {activeMenuItem === "Profilebar" && <Profilebar onRegimeClick={(userId)=> handleMenuItemClick("Regimebuilder",userId)} handleVideoClick={handleCallClick} patlis={patflag}/>}
+      {activeMenuItem === "Profilebar" && <Profilebar onRegimeClick={(userId)=> handleMenuItemClick("Regimebuilder",userId)} handleVideoClick={handleCallClick} patlis={patflag} onAssessmentClick={(userId)=> handleMenuItemClick("Analysis",userId)}/>}
       {activeMenuItem === "Regimebuilder" && <Regimebuilder userId={userID} onProfileClick={()=>handleMenuItemClick("Profilebar")}/>}
       {activeMenuItem === "VideoCall" && (
         <VideoCall doctorId={doctorId} onVideocallClick={()=>handleMenuItemClick("VideoCall")} onMeetEnd={onPatList}/>
