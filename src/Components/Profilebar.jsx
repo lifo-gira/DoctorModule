@@ -747,8 +747,8 @@ const Profilebar = ({onRegimeClick, handleVideoClick,patlis, onAssessmentClick})
         <div className={`w-full ${screenWidth<1200 || activeMenuItem === "Report"?"h-full":"h-5/6 "}`}>
           {(activeMenuItem === "Dashboard" && patlis === 'false') && <Dashboard patientdata={patients} doctordata={doctordata} handlePhoneIconClick={handleVideoClick} onEventSelect={handleEventSelect} onReportClick={(userId) => handleMenuItemClick("Report", userId)} />}
           {(activeMenuItem === "Patient List" || patlis === 'true') && <Patientlist patientdata={patients} handlePhoneIconClick={handleVideoClick} data={data} data1={data1} event={selectedEvent} onReportClick={(userId) => handleMenuItemClick("Report", userId)}/>}
-          {(activeMenuItem === "Report" && patlis === 'false') &&(<Report userId={userID} onDashboard={()=> handleMenuItemClick("Dashboard")}  onRegimeClick={(patientId) => onRegimeClick(patientId)}  onAssessmentClick={(patientId) => onAssessmentClick(patientId)} />)}
-          {(activeMenuItem === "Analysis") &&(<Assessment userId={userID} onDashboard={()=> handleMenuItemClick("Dashboard")} onAssessmentClick={(patientId) => onAssessmentClick(patientId)} />)}
+          {(activeMenuItem === "Report" && patlis === 'false') &&(<Report userId={userID} onDashboard={()=> handleMenuItemClick("Dashboard")}  onRegimeClick={(patientId) => onRegimeClick(patientId)}  onAssessmentClick={(patientId) => handleMenuItemClick("Analysis",patientId)} />)}
+          {(activeMenuItem === "Analysis") && (<Assessment userId={userID} onDashboard={()=> handleMenuItemClick("Dashboard")} />)}
         </div>
         
       </div>
