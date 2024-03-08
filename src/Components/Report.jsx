@@ -78,11 +78,7 @@ const CustomBar1 = (props) => {
   );
 };
 
-<<<<<<< HEAD
-const Report = ({ onDashboard, userId, onRegimeClick }) => {
-=======
 const Report = ({ onDashboard, userId, onRegimeClick ,onAssessmentClick}) => {
->>>>>>> 555461f (assessment page linking pls)
   const [selectedOption, setSelectedOption] = useState("");
   const options = ["Option 1", "Option 2", "Option 3"];
 
@@ -470,11 +466,7 @@ const Report = ({ onDashboard, userId, onRegimeClick ,onAssessmentClick}) => {
             </div>
 
             <div className={`w-5/6 h-1/3  flex ml-auto`}>
-<<<<<<< HEAD
-              <div className={`w-3/5 h-full`}>
-=======
               <div className={`w-3/5 h-full`} onClick={() => onAssessmentClick(patients.patient_id)}>
->>>>>>> 555461f (assessment page linking pls)
                 <Button className="flex items-center gap-2 font-poppins">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -615,11 +607,7 @@ const Report = ({ onDashboard, userId, onRegimeClick ,onAssessmentClick}) => {
 
             <div className={`w-full h-1/3  flex ml-auto`}>
               <div className={`w-3/4 flex ml-auto justify-center items-center`}>
-<<<<<<< HEAD
-                <div className={`w-3/5 h-full`}>
-=======
                 <div className={`w-3/5 h-full`} onClick={() => onAssessmentClick(patients.patient_id)}>
->>>>>>> 555461f (assessment page linking pls)
                   <Button className="flex items-center gap-2 font-poppins">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -779,11 +767,7 @@ const Report = ({ onDashboard, userId, onRegimeClick ,onAssessmentClick}) => {
                 <div
                   className={`w-3/4 flex ml-auto justify-center items-center`}
                 >
-<<<<<<< HEAD
-                  <div className={`w-3/5 h-full`}>
-=======
                   <div className={`w-3/5 h-full`} onClick={() => onAssessmentClick(patients.patient_id)}>
->>>>>>> 555461f (assessment page linking pls)
                     <Button className="flex items-center gap-2 font-poppins">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -931,11 +915,7 @@ const Report = ({ onDashboard, userId, onRegimeClick ,onAssessmentClick}) => {
 
             <div className={`w-full h-1/3  flex ml-auto`}>
               <div className={`w-3/4 flex ml-auto justify-center items-center`}>
-<<<<<<< HEAD
-              <div className={`w-3/5 h-full`}>
-=======
               <div className={`w-3/5 h-full`} onClick={() => onAssessmentClick(patients.patient_id)}>
->>>>>>> 555461f (assessment page linking pls)
               <Button className="flex items-center gap-2 font-poppins">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -1088,11 +1068,7 @@ const Report = ({ onDashboard, userId, onRegimeClick ,onAssessmentClick}) => {
 
             <div className={`w-full h-1/3 flex justify-center `}>
               <div className={`w-full flex  justify-center items-center`}>
-<<<<<<< HEAD
-              <div className={`w-full h-full`}>
-=======
               <div className={`w-full h-full`} onClick={() => onAssessmentClick(patients.patient_id)}>
->>>>>>> 555461f (assessment page linking pls)
               <Button className="flex items-center gap-2 font-poppins">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
