@@ -258,7 +258,7 @@ const Regimebuilder = ({ onProfileClick, userId }) => {
 
       // Send the updated exerciseGivenData to the backend
       const response = await fetch(
-        `http://127.0.0.1:8000/update_given_exercise_info/${patientId}/${newFlag}`,
+        `https://api-backup-vap2.onrender.com/update_given_exercise_info/${patientId}/${newFlag}`,
         {
           method: "PUT",
           headers: {
