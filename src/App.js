@@ -40,7 +40,7 @@ console.log("start  ",patflag)
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://127.0.0.1:8000/patient-details/all"
+          "https://api-backup-vap2.onrender.com/patient-details/all"
         );
         if (!response.ok) {
           throw new Error("Failed to fetch data");
@@ -73,7 +73,7 @@ console.log("start  ",patflag)
   const handleCallClick = async (userId) => {
     try {
       // Fetch patient information
-      const response = await fetch(`http://127.0.0.1:8000/patient-info/${userId}`);
+      const response = await fetch(`https://api-backup-vap2.onrender.com/patient-info/${userId}`);
       if (!response.ok) {
         throw new Error("Failed to fetch patient information");
       }
