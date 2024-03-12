@@ -49,10 +49,11 @@ import Endurance from "../Asset/runner.png";
 import Strength from "../Asset/muscle.png";
 import Balance from "../Asset/balance.png";
 import Flexibility from "../Asset/flexibility.png";
-import Run from "../Asset/run.png";
-import Squat from "../Asset/squat.png";
-import Pushup from "../Asset/pushup.png";
-import Pullup from "../Asset/pullup.png";
+import Run from "../Asset/Sit-Stand.jpg";
+import Squat from "../Asset/Left-Knee-Bend.jpg";
+import Pushup from "../Asset//Right-Knee-Bend.jpg";
+import Pullup from "../Asset/Right-Leg-Bend.jpg";
+import LeftLegBend from "../Asset/Left-Leg-Bend.jpg";
 import Stretching from "../Asset/stretching.png";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -104,9 +105,10 @@ const Regimebuilder = ({ onProfileClick, userId }) => {
     "https://lottie.host/b460d1ac-22ad-4021-8449-e71e8299074d/GLEetlLXRN.json",
     "https://lottie.host/83052e28-21d2-4efd-81b8-e3d7a52428bc/N3tSnWrJCJ.json",
     "https://lottie.host/559e8925-5b7f-49e4-b68d-7c79bc61d51e/PWvvXVkYzy.json",
+    "https://lottie.host/8cbfc4f4-2576-4800-ab68-fbb557b7b648/qiEFjh3zMb.json"
   ];
 
-  const demoexer = [Run, Squat, Pushup, Pullup];
+  const demoexer = [Run, Squat, Pushup, Pullup, LeftLegBend];
 
   const [openRight, setOpenRight] = React.useState(false);
   const openDrawerRight = () => setOpenRight(true);
@@ -790,6 +792,7 @@ const Regimebuilder = ({ onProfileClick, userId }) => {
               {selectedExercises.map((item, index) => {
                 // Extracting filename without path and extension
                 const fileName = item.split("/").pop().split(".")[0];
+                console.log(item)
                 return (
                   <Card
                     color="transparent"
